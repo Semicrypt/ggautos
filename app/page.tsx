@@ -9,8 +9,11 @@ import {
   FiCheck,
   FiChevronRight,
   FiClock,
+  FiMail,
+  FiMapPin,
   FiMenu,
   FiPackage,
+  FiPhone,
   FiRefreshCw,
   FiShield,
   FiTruck,
@@ -22,6 +25,12 @@ import {
   PiEngineFill,
   PiRoadHorizonFill,
 } from "react-icons/pi";
+
+import {
+  FaInstagram,
+  FaTiktok,
+  FaWhatsapp,
+} from "react-icons/fa6";
 
 import { useCallback, useEffect, useState } from "react";
 
@@ -397,7 +406,7 @@ function PublicInventory() {
 
           <div className="max-w-[430px]">
             <p className="text-sm leading-7 text-slate-400">
-              Explore the current Great Zuby vehicle collection. Availability,
+              Explore the current Blessed God Is Great vehicle collection. Availability,
               prices and vehicle details are updated directly by our inventory
               team.
             </p>
@@ -609,7 +618,7 @@ function PublicInventory() {
 
         {!loading && !inventoryError && vehicles.length > 0 && (
           <p className="mt-10 text-center text-[10px] uppercase tracking-[0.2em] text-[#6f603d]">
-            Inventory updated by Great Zuby Auto & Logistics Ltd.
+            Inventory updated by Blessed God Is Great Motor Autos Int'l Ventures
           </p>
         )}
       </div>
@@ -667,20 +676,20 @@ export default function Home() {
                 }}
                 className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-[10px] border border-[#e7b33f]/40 bg-gradient-to-br from-[#171109] via-[#6d4c0b] to-[#d7a72c] shadow-[0_0_25px_rgba(214,166,43,0.22)] lg:h-12 lg:w-12 lg:rounded-xl"
               >
-                <span className="relative z-10 text-[17px] font-black italic text-[#fff2bd] lg:text-xl">
-                  GZ
+                <span className="relative z-10 text-[13px] font-black italic tracking-[-0.08em] text-[#fff2bd] lg:text-[15px]">
+                  BGG
                 </span>
 
                 <div className="absolute inset-x-2 bottom-[6px] h-[1px] bg-gradient-to-r from-transparent via-[#ffe08a] to-transparent lg:bottom-2 lg:h-[2px]" />
               </motion.div>
 
               <div className="min-w-0">
-                <div className="whitespace-nowrap text-[13px] font-black leading-none tracking-[0.07em] text-white min-[370px]:text-[14px] sm:text-[15px] lg:text-[17px]">
-                  GREAT ZUBY
+                <div className="whitespace-nowrap text-[10px] font-black leading-none tracking-[0.045em] text-white min-[370px]:text-[11px] sm:text-[13px] lg:text-[15px]">
+                  BLESSED GOD IS GREAT
                 </div>
 
-                <div className="mt-1 whitespace-nowrap text-[6px] font-semibold tracking-[0.14em] text-[#e6bd57] min-[370px]:text-[7px] sm:text-[8px] lg:text-[9px] lg:tracking-[0.23em]">
-                  AUTO & LOGISTICS LTD.
+                <div className="mt-1 whitespace-nowrap text-[5px] font-semibold tracking-[0.08em] text-[#e6bd57] min-[370px]:text-[6px] sm:text-[7px] lg:text-[8px] lg:tracking-[0.13em]">
+                  MOTOR AUTOS INT&apos;L VENTURES
                 </div>
               </div>
             </a>
@@ -968,9 +977,9 @@ export default function Home() {
               }}
               className="hero-mobile-copy mt-4 max-w-[560px] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-[11px] leading-5 text-slate-200 min-[380px]:text-[12px] sm:mt-5 sm:text-[13px] sm:leading-6 md:mt-7 md:text-[17px] md:leading-7"
             >
-              GREAT ZUBY AUTO AND LOGISTICS LTD. brings vehicle sales,
-              sourcing and automotive logistics together in one dependable
-              experience.
+              BLESSED GOD IS GREAT MOTOR AUTOS INT'L VENTURES brings premium vehicle sales, sourcing and automotive
+              logistics together in one dependable experience across Nigeria
+              and Benin Republic.
             </motion.p>
 
             {/* ACTIONS */}
@@ -1236,9 +1245,9 @@ export default function Home() {
             </h2>
 
             <p className="mt-7 max-w-[560px] text-[15px] leading-8 text-slate-300">
-              Beyond selling vehicles, Great Zuby provides automotive
-              logistics support designed to simplify vehicle transportation
-              and delivery.
+              Beyond selling vehicles, Blessed God Is Great provides automotive
+              logistics support designed to simplify sourcing, transportation
+              and delivery across its Lagos, Onitsha and Cotonou operations.
             </p>
 
             <div className="relative mt-12 max-w-[560px]">
@@ -1424,7 +1433,7 @@ export default function Home() {
           >
             <img
               src="/images/great-zuby-lexus-hero.png"
-              alt="Great Zuby premium Lexus"
+              alt="Blessed God Is Great premium Lexus"
               className="absolute inset-0 h-full w-full object-cover"
             />
 
@@ -1461,7 +1470,7 @@ export default function Home() {
               <span className="h-px w-8 bg-[#d6a62b]" />
 
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#f0c458]">
-                About Great Zuby
+                About Blessed God Is Great
               </span>
             </div>
 
@@ -1477,9 +1486,9 @@ export default function Home() {
             </h2>
 
             <p className="mt-7 max-w-[600px] text-[15px] leading-8 text-slate-300">
-              GREAT ZUBY AUTO AND LOGISTICS LTD. is positioned to provide
-              customers with a professional destination for automobiles,
-              sourcing and vehicle logistics.
+              BLESSED GOD IS GREAT MOTOR AUTOS INT'L VENTURES provides customers with a professional destination for
+              vehicle sales, sourcing and automotive logistics, with offices in
+              Lagos, Onitsha and Cotonou.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -1592,43 +1601,144 @@ export default function Home() {
 
         <div className="absolute left-1/2 top-0 h-[2px] w-[75%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#ffd05a]/80 to-transparent" />
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          className="relative z-10 mx-auto flex max-w-[1100px] flex-col items-center px-5 text-center"
-        >
-          <span className="rounded-full border border-[#d6a62b]/30 bg-[#d6a62b]/10 px-5 py-2 text-[9px] font-black uppercase tracking-[0.3em] text-[#f0c458] backdrop-blur">
-            Great Zuby Auto & Logistics Ltd.
-          </span>
-
-          <h2 className="mt-7 text-4xl font-black leading-[1] tracking-[-0.05em] sm:text-5xl md:text-7xl">
-            Your next vehicle
-            <br />
-
-            <span className="bg-gradient-to-r from-[#bd8714] via-[#ffd76a] to-[#fff0b0] bg-clip-text text-transparent">
-              starts here.
+        <div className="relative z-10 mx-auto max-w-[1200px] px-5 md:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <span className="inline-flex rounded-full border border-[#d6a62b]/30 bg-[#d6a62b]/10 px-5 py-2 text-[8px] font-black uppercase tracking-[0.2em] text-[#f0c458] backdrop-blur sm:text-[9px] sm:tracking-[0.3em]">
+              Blessed God Is Great Motor Autos Int&apos;l Ventures
             </span>
-          </h2>
 
-          <p className="mt-6 max-w-[560px] text-sm leading-7 text-slate-400 md:text-base">
-            Contact information and official enquiry channels will be
-            published after final business approval.
-          </p>
+            <h2 className="mt-7 text-4xl font-black leading-[1] tracking-[-0.05em] sm:text-5xl md:text-7xl">
+              Your next vehicle
+              <br />
+              <span className="bg-gradient-to-r from-[#bd8714] via-[#ffd76a] to-[#fff0b0] bg-clip-text text-transparent">
+                starts here.
+              </span>
+            </h2>
 
-          <div className="mt-9 flex items-center gap-3 rounded-full bg-gradient-to-r from-[#b98311] via-[#d6a62b] to-[#f0c85d] px-6 py-4 text-sm font-black text-[#080603] shadow-[0_15px_45px_rgba(214,166,43,0.2)]">
-            Contact details coming soon
-            <FiChevronRight />
+            <p className="mx-auto mt-6 max-w-[650px] text-sm leading-7 text-slate-400 md:text-base">
+              Contact our team for vehicle availability, sourcing, delivery and
+              automotive logistics enquiries.
+            </p>
+          </motion.div>
+
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <a
+              href="tel:+2347032729753"
+              className="group rounded-[22px] border border-[#d6a62b]/18 bg-[#0d0b07]/80 p-5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-[#d6a62b]/40"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#d6a62b]/10 text-xl text-[#f2c857]">
+                <FiPhone />
+              </div>
+              <p className="mt-4 text-[9px] font-black uppercase tracking-[0.18em] text-[#8f7741]">
+                Call
+              </p>
+              <p className="mt-2 text-sm font-bold text-white">
+                +234 703 272 9753
+              </p>
+            </a>
+
+            <a
+              href="mailto:godspowernwachukwu935@gmail.com"
+              className="group rounded-[22px] border border-[#d6a62b]/18 bg-[#0d0b07]/80 p-5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-[#d6a62b]/40"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#d6a62b]/10 text-xl text-[#f2c857]">
+                <FiMail />
+              </div>
+              <p className="mt-4 text-[9px] font-black uppercase tracking-[0.18em] text-[#8f7741]">
+                Email
+              </p>
+              <p className="mt-2 break-all text-sm font-bold text-white">
+                godspowernwachukwu935@gmail.com
+              </p>
+            </a>
+
+            <div className="rounded-[22px] border border-[#d6a62b]/18 bg-[#0d0b07]/80 p-5 backdrop-blur-xl">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#d6a62b]/10 text-xl text-[#f2c857]">
+                <FaWhatsapp />
+              </div>
+              <p className="mt-4 text-[9px] font-black uppercase tracking-[0.18em] text-[#8f7741]">
+                WhatsApp
+              </p>
+              <div className="mt-2 flex flex-col gap-2 text-sm font-bold">
+                <a
+                  href="https://wa.me/2347032729753"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-white transition hover:text-[#f2c857]"
+                >
+                  +234 703 272 9753
+                </a>
+                <a
+                  href="https://wa.me/22957804416"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-white transition hover:text-[#f2c857]"
+                >
+                  +229 57 80 44 16
+                </a>
+              </div>
+            </div>
           </div>
-        </motion.div>
+
+          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+            {[
+              [
+                "Lagos Branch",
+                "Kilometre 6, Ikeja Along Expressway, Lagos State, Nigeria",
+              ],
+              [
+                "Onitsha Branch",
+                "No. 2 Anam Street, Omagba Phase 2 Estate, Onitsha, Anambra State",
+              ],
+              [
+                "Cotonou Office",
+                "Park Royale Mivvo, Cotonou, Benin Republic",
+              ],
+            ].map(([branch, address]) => (
+              <div
+                key={branch}
+                className="rounded-[22px] border border-[#d6a62b]/15 bg-black/30 p-5 backdrop-blur-xl"
+              >
+                <div className="flex items-start gap-3">
+                  <FiMapPin className="mt-1 shrink-0 text-[#f2c857]" />
+                  <div>
+                    <p className="text-xs font-black text-white">{branch}</p>
+                    <p className="mt-2 text-xs leading-6 text-slate-500">
+                      {address}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="https://www.instagram.com/godspowernwachukwumotors?stkn=MXJ5eTZoeDJuNzB0NQ=="
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 rounded-full border border-[#d6a62b]/25 bg-[#d6a62b]/5 px-5 py-3 text-xs font-black text-[#f0c458] transition hover:bg-[#d6a62b]/10"
+            >
+              <FaInstagram className="text-base" />
+              Instagram
+            </a>
+
+            <a
+              href="https://www.tiktok.com/@blessedgreatautos685?_r=1&_t=ZS-99v5JW59l8T"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 rounded-full border border-[#d6a62b]/25 bg-[#d6a62b]/5 px-5 py-3 text-xs font-black text-[#f0c458] transition hover:bg-[#d6a62b]/10"
+            >
+              <FaTiktok className="text-base" />
+              TikTok
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* =====================================================
@@ -1640,24 +1750,24 @@ export default function Home() {
           <div className="grid gap-12 border-b border-[#d6a62b]/15 pb-14 md:grid-cols-2 lg:grid-cols-4">
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#d6a62b]/35 bg-gradient-to-br from-[#171109] to-[#c7921e] text-lg font-black italic text-[#fff0b0]">
-                  GZ
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#d6a62b]/35 bg-gradient-to-br from-[#171109] to-[#c7921e] text-[13px] font-black italic tracking-[-0.08em] text-[#fff0b0]">
+                  BGG
                 </div>
 
                 <div>
-                  <div className="font-black tracking-[0.08em]">
-                    GREAT ZUBY
+                  <div className="font-black tracking-[0.05em]">
+                    BLESSED GOD IS GREAT
                   </div>
 
-                  <div className="mt-1 text-[8px] font-semibold tracking-[0.22em] text-[#d6a62b]">
-                    AUTO & LOGISTICS LTD.
+                  <div className="mt-1 text-[7px] font-semibold tracking-[0.12em] text-[#d6a62b]">
+                    MOTOR AUTOS INT&apos;L VENTURES
                   </div>
                 </div>
               </div>
 
               <p className="mt-6 max-w-[440px] text-sm leading-7 text-slate-400">
-                Premium automotive sales, sourcing and vehicle logistics
-                delivered with professionalism.
+                Premium vehicle sales, sourcing and automotive logistics across
+                Lagos, Onitsha and Cotonou.
               </p>
             </div>
 
@@ -1714,7 +1824,7 @@ export default function Home() {
 
           <div className="flex flex-col justify-between gap-4 pt-7 text-[11px] text-[#746442] md:flex-row">
             <p>
-              © 2026 GREAT ZUBY AUTO AND LOGISTICS LTD. All rights reserved.
+              © 2026 BLESSED GOD IS GREAT MOTOR AUTOS INT'L VENTURES All rights reserved.
             </p>
 
             <p>Automotive excellence in motion.</p>

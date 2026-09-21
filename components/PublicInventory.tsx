@@ -539,7 +539,7 @@ export default function PublicInventory() {
             0 && (
             <p className="mt-10 text-center text-[10px] uppercase tracking-[0.2em] text-[#6f603d]">
               Inventory updated by
-              Great Zuby Auto &
+              Blessed God Is Great Motor Autos Int'l Ventures
               Logistics Ltd.
             </p>
           )}

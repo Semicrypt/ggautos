@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Great Zuby Auto & Logistics Ltd.",
+  title: "Blessed God Is Great Motor Autos Int'l Ventures",
   description:
-    "Premium automobile sales, vehicle sourcing and automotive logistics from Great Zuby Auto & Logistics Ltd.",
+    "Premium vehicle sales, sourcing and automotive logistics in Lagos, Onitsha and Cotonou.",
 };
 
 export default function RootLayout({

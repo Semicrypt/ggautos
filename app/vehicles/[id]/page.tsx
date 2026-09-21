@@ -418,15 +418,15 @@ export default function VehicleDetailPage() {
         <div className="mx-auto flex min-h-[68px] max-w-[1440px] items-center justify-between gap-4 px-4 py-3 sm:px-6 md:px-8 xl:px-12">
           <Link href="/" className="flex min-w-0 items-center gap-2.5">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-[#e7b33f]/40 bg-gradient-to-br from-[#171109] via-[#6d4c0b] to-[#d7a72c] text-[16px] font-black italic text-[#fff2bd] shadow-[0_0_25px_rgba(214,166,43,0.22)]">
-              GZ
+              BGG
             </div>
 
             <div className="min-w-0">
               <p className="whitespace-nowrap text-[13px] font-black leading-none tracking-[0.07em] sm:text-[15px]">
-                GREAT ZUBY
+                BLESSED GOD IS GREAT
               </p>
               <p className="mt-1 whitespace-nowrap text-[6px] font-semibold tracking-[0.14em] text-[#e6bd57] sm:text-[8px]">
-                AUTO & LOGISTICS LTD.
+                MOTOR AUTOS INT'L VENTURES
               </p>
             </div>
           </Link>
@@ -590,10 +590,10 @@ export default function VehicleDetailPage() {
               <div className="flex items-start gap-3">
                 <FiShield className="mt-0.5 shrink-0 text-xl text-[#f2c857]" />
                 <div>
-                  <p className="text-sm font-black text-white">Great Zuby Inventory</p>
+                  <p className="text-sm font-black text-white">Blessed God Is Great Inventory</p>
                   <p className="mt-2 text-xs leading-6 text-slate-500">
                     Vehicle availability and specifications are managed directly
-                    through the Great Zuby inventory system.
+                    through the Blessed God Is Great inventory system.
                   </p>
                 </div>
               </div>
@@ -650,7 +650,7 @@ export default function VehicleDetailPage() {
               </p>
             ) : (
               <p className="mt-5 text-sm leading-8 text-slate-500">
-                Additional vehicle information will be added by the Great Zuby
+                Additional vehicle information will be added by the Blessed God Is Great
                 inventory team.
               </p>
             )}
@@ -786,7 +786,7 @@ export default function VehicleDetailPage() {
                   </h2>
 
                   <p className="mt-3 text-sm leading-7 text-slate-500">
-                    Send your details to Great Zuby. This enquiry is linked
+                    Send your details to Blessed God Is Great. This enquiry is linked
                     directly to this vehicle in the dealership system.
                   </p>
 
@@ -951,7 +951,7 @@ export default function VehicleDetailPage() {
 
                   <p className="mx-auto mt-4 max-w-[430px] text-sm leading-7 text-slate-500">
                     Your enquiry about <strong className="text-slate-300">{vehicle.name}</strong>{" "}
-                    has been recorded for the Great Zuby team.
+                    has been recorded for the Blessed God Is Great team.
                   </p>
 
                   <button
@@ -970,9 +970,9 @@ export default function VehicleDetailPage() {
 
       <footer className="relative z-10 border-t border-[#d6a62b]/15 bg-[#020201]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-4 py-8 text-[10px] text-[#746442] sm:px-6 md:flex-row md:items-center md:justify-between md:px-8 xl:px-12">
-          <p>© 2026 GREAT ZUBY AUTO AND LOGISTICS LTD.</p>
+          <p>© 2026 BLESSED GOD IS GREAT MOTOR AUTOS INT'L VENTURES</p>
           <Link href="/" className="font-bold text-[#b99b53] hover:text-[#f2c857]">
-            Back to Great Zuby
+            Back to Blessed God Is Great
           </Link>
         </div>
       </footer>

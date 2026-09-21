@@ -1116,7 +1116,7 @@ export default function ManageVehiclePage() {
         }
 
         if (
-          vehicle.video_url
+          vehicle?.video_url
         ) {
           const videoPath =
             getStoragePathFromPublicUrl(
@@ -1241,12 +1241,12 @@ export default function ManageVehiclePage() {
 
           <div className="flex items-center gap-2.5">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#d6a62b]/40 bg-gradient-to-br from-[#171109] to-[#c7921e] text-sm font-black italic text-[#fff0b0]">
-              GZ
+              BGG
             </div>
 
             <div className="hidden sm:block">
               <p className="text-sm font-black tracking-[0.07em]">
-                GREAT ZUBY
+                BLESSED GOD IS GREAT
               </p>
 
               <p className="mt-1 text-[7px] font-bold tracking-[0.2em] text-[#d6a62b]">

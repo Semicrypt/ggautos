@@ -508,7 +508,7 @@ export default function AdminDashboard() {
           <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#d6a62b]/30 border-t-[#f2c857]" />
 
           <p className="text-sm text-[#8f7741]">
-            Loading Great Zuby dashboard...
+            Loading dealership dashboard...
           </p>
         </div>
       </main>
@@ -525,12 +525,12 @@ export default function AdminDashboard() {
         <div className="mx-auto flex min-h-[72px] max-w-[1400px] items-center justify-between gap-3 px-4 py-3 sm:px-5 md:px-8">
           <div className="flex min-w-0 items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#d6a62b]/40 bg-gradient-to-br from-[#171109] to-[#c7921e] text-lg font-black italic text-[#fff0b0]">
-              GZ
+              BGG
             </div>
 
             <div className="min-w-0">
               <p className="truncate text-sm font-black tracking-[0.07em] sm:text-base">
-                GREAT ZUBY
+                BLESSED GOD IS GREAT
               </p>
 
               <p className="mt-1 text-[7px] font-bold tracking-[0.2em] text-[#d6a62b] sm:text-[8px]">
@@ -584,7 +584,7 @@ export default function AdminDashboard() {
             </p>
 
             <h1 className="mt-3 text-3xl font-black tracking-[-0.04em] sm:text-4xl md:text-5xl">
-              Great Zuby Dashboard
+              Blessed God Is Great Dashboard
             </h1>
 
             <p className="mt-3 break-all text-sm text-slate-500 sm:break-normal">
@@ -737,7 +737,7 @@ export default function AdminDashboard() {
 
                   <p className="mt-3 text-sm leading-7 text-slate-500">
                     Add the first
-                    Great Zuby
+                    Blessed God Is Great
                     vehicle to begin
                     building the live
                     dealership
@@ -1052,7 +1052,7 @@ export default function AdminDashboard() {
                             {enquiry.email && (
                               <a
                                 href={`mailto:${enquiry.email}?subject=${encodeURIComponent(
-                                  `Great Zuby - ${enquiry.vehicle_name} enquiry`,
+                                  `Blessed God Is Great - ${enquiry.vehicle_name} enquiry`,
                                 )}`}
                                 className="flex items-center gap-3 rounded-2xl border border-[#d6a62b]/10 bg-black/25 p-4 transition hover:border-[#d6a62b]/25"
                               >
