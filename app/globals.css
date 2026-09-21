@@ -3,11 +3,20 @@
 :root {
   --background: #030303;
   --foreground: #ffffff;
+
   --gold: #d6a62b;
   --gold-bright: #f2c857;
   --gold-light: #ffe08a;
   --gold-dark: #8f6510;
+
+  --admin-surface: #0c0b08;
+  --admin-surface-light: #15120c;
+  --admin-border: rgba(214, 166, 43, 0.2);
 }
+
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
 
 * {
   box-sizing: border-box;
@@ -16,6 +25,7 @@
 html {
   scroll-behavior: smooth;
   background: #030303;
+  color-scheme: dark;
 }
 
 body {
@@ -27,7 +37,7 @@ body {
 }
 
 section[id] {
-  scroll-margin-top: 70px;
+  scroll-margin-top: 115px;
 }
 
 ::selection {
@@ -35,8 +45,38 @@ section[id] {
   color: #050403;
 }
 
+/* =========================================================
+   LINKS + BUTTONS
+========================================================= */
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* =========================================================
+   PREMIUM SCROLLBAR
+========================================================= */
+
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -50,6 +90,7 @@ section[id] {
     #d6a62b,
     #f2c857
   );
+
   border-radius: 100px;
 }
 
@@ -57,34 +98,235 @@ section[id] {
   background: #f2c857;
 }
 
-a {
-  text-decoration: none;
+/* =========================================================
+   ADMIN FORM INPUTS
+========================================================= */
+
+.gz-input {
+  width: 100%;
+
+  min-height: 52px;
+
+  padding: 13px 15px;
+
+  border: 1px solid rgba(214, 166, 43, 0.18);
+
+  border-radius: 14px;
+
+  outline: none;
+
+  background: #090805;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  color-scheme: dark;
 }
 
-button {
+/* =========================================================
+   INPUT HOVER
+========================================================= */
+
+.gz-input:hover {
+  border-color: rgba(214, 166, 43, 0.35);
+}
+
+/* =========================================================
+   INPUT FOCUS
+========================================================= */
+
+.gz-input:focus {
+  border-color: #d6a62b;
+
+  background: #0d0b07;
+
+  box-shadow:
+    0 0 0 3px rgba(214, 166, 43, 0.08),
+    0 8px 28px rgba(0, 0, 0, 0.22);
+}
+
+/* =========================================================
+   PLACEHOLDERS
+========================================================= */
+
+.gz-input::placeholder {
+  color: #67635d;
+  opacity: 1;
+}
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+textarea.gz-input {
+  min-height: 140px;
+
+  resize: vertical;
+
+  line-height: 1.7;
+}
+
+/* =========================================================
+   SELECT / DROPDOWNS
+
+   This fixes the white dropdown problem on Windows / Chrome.
+========================================================= */
+
+select.gz-input {
+  appearance: auto;
+  -webkit-appearance: auto;
+
+  background-color: #090805;
+
+  color: #ffffff;
+
+  color-scheme: dark;
+
   cursor: pointer;
 }
 
-a,
-button {
-  -webkit-tap-highlight-color: transparent;
+/* Native dropdown options */
+
+select.gz-input option {
+  background-color: #0c0b08 !important;
+
+  color: #ffffff !important;
+
+  padding: 12px;
+
+  font-size: 14px;
 }
 
-img {
-  max-width: 100%;
+/* Selected option */
+
+select.gz-input option:checked {
+  background-color: #d6a62b !important;
+
+  color: #080603 !important;
+}
+
+/* Disabled option */
+
+select.gz-input option:disabled {
+  background-color: #090805 !important;
+
+  color: #625d54 !important;
+}
+
+/* =========================================================
+   NUMBER INPUTS
+========================================================= */
+
+input.gz-input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input.gz-input[type="number"]::-webkit-inner-spin-button,
+input.gz-input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0.55;
+}
+
+/* =========================================================
+   AUTOFILL FIX
+
+   Prevents Chrome from turning admin fields white/blue.
+========================================================= */
+
+input.gz-input:-webkit-autofill,
+input.gz-input:-webkit-autofill:hover,
+input.gz-input:-webkit-autofill:focus,
+textarea.gz-input:-webkit-autofill,
+select.gz-input:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff;
+
+  -webkit-box-shadow:
+    0 0 0 1000px #090805 inset;
+
+  box-shadow:
+    0 0 0 1000px #090805 inset;
+
+  caret-color: #ffffff;
+
+  transition:
+    background-color 9999s ease-in-out 0s;
+}
+
+/* =========================================================
+   CHECKBOXES + RADIO BUTTONS
+========================================================= */
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: #d6a62b;
+}
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+input[type="file"] {
+  color-scheme: dark;
+}
+
+/* =========================================================
+   FORM DISABLED STATES
+========================================================= */
+
+.gz-input:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.55;
+
+  background: #070706;
+}
+
+/* =========================================================
+   MOBILE INPUT FIX
+
+   Keeping font-size at least 16px on phones prevents iPhone
+   Safari from zooming into the page when an input is tapped.
+========================================================= */
+
+@media (max-width: 640px) {
+  .gz-input {
+    min-height: 50px;
+
+    padding: 12px 14px;
+
+    font-size: 16px;
+  }
+
+  textarea.gz-input {
+    min-height: 130px;
+  }
 }
 
 /* =========================================================
    VERY SHORT MOBILE PHONES
-   Example: older iPhones / landscape-like short viewports
+
+   Example:
+   older iPhones / landscape-like short viewports
 ========================================================= */
 
 @media (max-width: 640px) and (max-height: 720px) {
   .hero-mobile-copy {
     margin-top: 12px;
-    font-size: 10px;
-    line-height: 1.45;
+
     max-width: 330px;
+
+    font-size: 10px;
+
+    line-height: 1.45;
   }
 
   .hero-mobile-actions {
@@ -93,6 +335,7 @@ img {
 
   .hero-mobile-stats {
     margin-top: 16px;
+
     padding-top: 12px;
   }
 }

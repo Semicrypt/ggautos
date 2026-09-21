@@ -356,7 +356,7 @@ export default function VehicleDetailPage() {
           </p>
 
           <Link
-            href="/#vehicles"
+            href="/vehicles"
             className="mt-7 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#a8750e] via-[#d6a62b] to-[#f2ca61] px-6 py-3.5 text-sm font-black text-black"
           >
             <FiArrowLeft />
@@ -432,11 +432,11 @@ export default function VehicleDetailPage() {
           </Link>
 
           <Link
-            href="/#vehicles"
+            href="/vehicles"
             className="flex items-center gap-2 rounded-full border border-[#d6a62b]/25 px-4 py-2.5 text-[10px] font-black uppercase tracking-[0.12em] text-[#e5c35c] transition hover:bg-[#d6a62b]/10 sm:px-5 sm:text-xs"
           >
             <FiArrowLeft />
-            <span className="hidden min-[360px]:inline">Inventory</span>
+            <span className="hidden min-[360px]:inline">All Vehicles</span>
           </Link>
         </div>
       </header>
@@ -448,8 +448,8 @@ export default function VehicleDetailPage() {
             Home
           </Link>
           <span>/</span>
-          <Link href="/#vehicles" className="transition hover:text-[#f2c857]">
-            Vehicles
+          <Link href="/vehicles" className="transition hover:text-[#f2c857]">
+            Inventory
           </Link>
           <span>/</span>
           <span className="text-[#b99a4d]">{vehicle.name}</span>
@@ -611,27 +611,48 @@ export default function VehicleDetailPage() {
                 </button>
               ) : (
                 <Link
-                  href="/#vehicles"
+                  href="/vehicles"
                   className="group flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#a8750e] via-[#d6a62b] to-[#f2ca61] px-6 py-4 text-sm font-black text-black"
                 >
-                  View Available Vehicles
+                  Browse Available Vehicles
                   <FiArrowRight />
                 </Link>
               )}
 
               <Link
-                href="/#vehicles"
+                href="/vehicles"
                 className="flex items-center justify-center gap-2 rounded-full border border-[#d6a62b]/25 px-6 py-4 text-sm font-bold text-[#d3b35e] transition hover:bg-[#d6a62b]/8"
               >
                 <FiArrowLeft />
-                Back to Inventory
+                Back to All Vehicles
               </Link>
             </div>
           </aside>
         </div>
 
+        {/* CONTINUE BROWSING */}
+        <div className="mt-10 flex flex-col gap-4 rounded-[22px] border border-[#d6a62b]/15 bg-[#0b0906]/85 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+          <div>
+            <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#d6a62b]">
+              Continue Shopping
+            </p>
+
+            <p className="mt-2 text-sm text-slate-400">
+              Want to compare this vehicle with other options?
+            </p>
+          </div>
+
+          <Link
+            href="/vehicles"
+            className="flex shrink-0 items-center justify-center gap-2 rounded-full border border-[#d6a62b]/25 px-5 py-3 text-xs font-black text-[#e6c15b] transition hover:bg-[#d6a62b]/10"
+          >
+            <FiArrowLeft />
+            View All Vehicles
+          </Link>
+        </div>
+
         {/* DESCRIPTION */}
-        <section className="mt-12 grid gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:gap-8">
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1.3fr_0.7fr] lg:gap-8">
           <div className="rounded-[26px] border border-[#d6a62b]/15 bg-[#0c0b08]/75 p-5 backdrop-blur sm:p-7 md:p-9">
             <div className="flex items-center gap-3">
               <span className="h-px w-8 bg-[#d6a62b]" />
@@ -970,10 +991,23 @@ export default function VehicleDetailPage() {
 
       <footer className="relative z-10 border-t border-[#d6a62b]/15 bg-[#020201]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-4 py-8 text-[10px] text-[#746442] sm:px-6 md:flex-row md:items-center md:justify-between md:px-8 xl:px-12">
-          <p>© 2026 BLESSED GOD IS GREAT MOTOR AUTOS INT'L VENTURES</p>
-          <Link href="/" className="font-bold text-[#b99b53] hover:text-[#f2c857]">
-            Back to Blessed God Is Great
-          </Link>
+          <p>© 2026 BLESSED GOD IS GREAT MOTOR AUTOS INT&apos;L VENTURES</p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              href="/vehicles"
+              className="font-bold text-[#b99b53] transition hover:text-[#f2c857]"
+            >
+              Browse Inventory
+            </Link>
+
+            <Link
+              href="/"
+              className="font-bold text-[#b99b53] transition hover:text-[#f2c857]"
+            >
+              Back Home
+            </Link>
+          </div>
         </div>
       </footer>
     </main>

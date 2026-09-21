@@ -16,14 +16,21 @@ import {
   FiClock,
   FiEdit3,
   FiExternalLink,
+  FiEye,
+  FiEyeOff,
   FiInbox,
   FiMail,
   FiPhone,
   FiPlus,
   FiRefreshCw,
+  FiSearch,
+  FiStar,
   FiTrash2,
+  FiX,
   FiXCircle,
 } from "react-icons/fi";
+
+import { FaWhatsapp } from "react-icons/fa6";
 
 import { supabase } from "@/lib/supabase";
 
@@ -46,6 +53,7 @@ type Vehicle = {
   color: string | null;
   status: VehicleStatus;
   cover_image_url: string | null;
+  is_featured: boolean;
   created_at: string;
 };
 
@@ -69,6 +77,35 @@ type VehicleEnquiry = {
 type DashboardTab =
   | "inventory"
   | "enquiries";
+
+type InventoryFilter =
+  | "all"
+  | VehicleStatus;
+
+type EnquiryFilter =
+  | "all"
+  | EnquiryStatus;
+
+const inventoryFilters: {
+  value: InventoryFilter;
+  label: string;
+}[] = [
+  { value: "all", label: "All" },
+  { value: "available", label: "Available" },
+  { value: "reserved", label: "Reserved" },
+  { value: "sold", label: "Sold" },
+  { value: "hidden", label: "Hidden" },
+];
+
+const enquiryFilters: {
+  value: EnquiryFilter;
+  label: string;
+}[] = [
+  { value: "all", label: "All" },
+  { value: "new", label: "New" },
+  { value: "contacted", label: "Contacted" },
+  { value: "closed", label: "Closed" },
+];
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -97,8 +134,23 @@ export default function AdminDashboard() {
   const [refreshing, setRefreshing] =
     useState(false);
 
+  const [vehicleActionId, setVehicleActionId] =
+    useState<string | null>(null);
+
   const [enquiryActionId, setEnquiryActionId] =
     useState<string | null>(null);
+
+  const [inventorySearch, setInventorySearch] =
+    useState("");
+
+  const [inventoryFilter, setInventoryFilter] =
+    useState<InventoryFilter>("all");
+
+  const [enquirySearch, setEnquirySearch] =
+    useState("");
+
+  const [enquiryFilter, setEnquiryFilter] =
+    useState<EnquiryFilter>("all");
 
   /* =========================================================
      LOAD VEHICLES
@@ -127,9 +179,13 @@ export default function AdminDashboard() {
           color,
           status,
           cover_image_url,
+          is_featured,
           created_at
         `,
         )
+        .order("is_featured", {
+          ascending: false,
+        })
         .order("created_at", {
           ascending: false,
         });
@@ -311,6 +367,13 @@ export default function AdminDashboard() {
               vehicle.status ===
               "sold",
           ).length,
+
+        hidden:
+          vehicles.filter(
+            (vehicle) =>
+              vehicle.status ===
+              "hidden",
+          ).length,
       };
     }, [vehicles]);
 
@@ -341,6 +404,209 @@ export default function AdminDashboard() {
           ).length,
       };
     }, [enquiries]);
+
+  /* =========================================================
+     FILTERED RESULTS
+  ========================================================= */
+
+  const filteredVehicles =
+    useMemo(() => {
+      const query =
+        inventorySearch
+          .trim()
+          .toLowerCase();
+
+      return vehicles.filter(
+        (vehicle) => {
+          const statusMatches =
+            inventoryFilter ===
+              "all" ||
+            vehicle.status ===
+              inventoryFilter;
+
+          if (!statusMatches) {
+            return false;
+          }
+
+          if (!query) {
+            return true;
+          }
+
+          return [
+            vehicle.name,
+            vehicle.brand,
+            vehicle.model || "",
+            vehicle.year
+              ? String(
+                  vehicle.year,
+                )
+              : "",
+            vehicle.color || "",
+            vehicle.transmission ||
+              "",
+          ]
+            .join(" ")
+            .toLowerCase()
+            .includes(query);
+        },
+      );
+    }, [
+      vehicles,
+      inventorySearch,
+      inventoryFilter,
+    ]);
+
+  const filteredEnquiries =
+    useMemo(() => {
+      const query =
+        enquirySearch
+          .trim()
+          .toLowerCase();
+
+      return enquiries.filter(
+        (enquiry) => {
+          const statusMatches =
+            enquiryFilter ===
+              "all" ||
+            enquiry.status ===
+              enquiryFilter;
+
+          if (!statusMatches) {
+            return false;
+          }
+
+          if (!query) {
+            return true;
+          }
+
+          return [
+            enquiry.customer_name,
+            enquiry.vehicle_name,
+            enquiry.phone || "",
+            enquiry.email || "",
+            enquiry.message || "",
+          ]
+            .join(" ")
+            .toLowerCase()
+            .includes(query);
+        },
+      );
+    }, [
+      enquiries,
+      enquirySearch,
+      enquiryFilter,
+    ]);
+
+  /* =========================================================
+     VEHICLE ACTIONS
+  ========================================================= */
+
+  const updateVehicleStatus =
+    async (
+      vehicleId: string,
+      nextStatus: VehicleStatus,
+    ) => {
+      setVehicleActionId(
+        vehicleId,
+      );
+
+      setInventoryError("");
+
+      const {
+        error: updateError,
+      } = await supabase
+        .from("vehicles")
+        .update({
+          status: nextStatus,
+        })
+        .eq("id", vehicleId);
+
+      if (updateError) {
+        setInventoryError(
+          updateError.message,
+        );
+
+        setVehicleActionId(
+          null,
+        );
+
+        return;
+      }
+
+      setVehicles(
+        (current) =>
+          current.map(
+            (vehicle) =>
+              vehicle.id ===
+              vehicleId
+                ? {
+                    ...vehicle,
+                    status:
+                      nextStatus,
+                  }
+                : vehicle,
+          ),
+      );
+
+      setVehicleActionId(
+        null,
+      );
+    };
+
+  const toggleFeatured =
+    async (
+      vehicle: Vehicle,
+    ) => {
+      setVehicleActionId(
+        vehicle.id,
+      );
+
+      setInventoryError("");
+
+      const nextFeatured =
+        !vehicle.is_featured;
+
+      const {
+        error: updateError,
+      } = await supabase
+        .from("vehicles")
+        .update({
+          is_featured:
+            nextFeatured,
+        })
+        .eq("id", vehicle.id);
+
+      if (updateError) {
+        setInventoryError(
+          updateError.message,
+        );
+
+        setVehicleActionId(
+          null,
+        );
+
+        return;
+      }
+
+      setVehicles(
+        (current) =>
+          current.map(
+            (item) =>
+              item.id ===
+              vehicle.id
+                ? {
+                    ...item,
+                    is_featured:
+                      nextFeatured,
+                  }
+                : item,
+          ),
+      );
+
+      setVehicleActionId(
+        null,
+      );
+    };
 
   /* =========================================================
      ENQUIRY ACTIONS
@@ -497,6 +763,13 @@ export default function AdminDashboard() {
     );
   };
 
+  const normalizeWhatsApp =
+    (value: string) =>
+      value.replace(
+        /[^0-9]/g,
+        "",
+      );
+
   /* =========================================================
      LOADING
   ========================================================= */
@@ -517,23 +790,21 @@ export default function AdminDashboard() {
 
   return (
     <main className="min-h-screen bg-[#050403] text-white">
-      {/* =====================================================
-          HEADER
-      ====================================================== */}
+      {/* HEADER */}
 
       <header className="sticky top-0 z-50 border-b border-[#d6a62b]/15 bg-[#050403]/95 backdrop-blur-xl">
         <div className="mx-auto flex min-h-[72px] max-w-[1400px] items-center justify-between gap-3 px-4 py-3 sm:px-5 md:px-8">
           <div className="flex min-w-0 items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#d6a62b]/40 bg-gradient-to-br from-[#171109] to-[#c7921e] text-lg font-black italic text-[#fff0b0]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#d6a62b]/40 bg-gradient-to-br from-[#171109] to-[#c7921e] text-[13px] font-black italic tracking-[-0.06em] text-[#fff0b0]">
               BGG
             </div>
 
             <div className="min-w-0">
-              <p className="truncate text-sm font-black tracking-[0.07em] sm:text-base">
+              <p className="truncate text-sm font-black tracking-[0.05em] sm:text-base">
                 BLESSED GOD IS GREAT
               </p>
 
-              <p className="mt-1 text-[7px] font-bold tracking-[0.2em] text-[#d6a62b] sm:text-[8px]">
+              <p className="mt-1 text-[7px] font-bold tracking-[0.18em] text-[#d6a62b] sm:text-[8px]">
                 ADMIN PORTAL
               </p>
             </div>
@@ -570,49 +841,77 @@ export default function AdminDashboard() {
         </div>
       </header>
 
-      {/* =====================================================
-          PAGE
-      ====================================================== */}
+      {/* PAGE */}
 
-      <section className="mx-auto max-w-[1400px] px-4 py-8 sm:px-5 md:px-8 md:py-14">
+      <section className="mx-auto max-w-[1400px] px-4 py-7 sm:px-5 md:px-8 md:py-10">
         {/* INTRO */}
 
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div>
             <p className="text-[9px] font-black uppercase tracking-[0.25em] text-[#d6a62b]">
               Dealership Management
             </p>
 
             <h1 className="mt-3 text-3xl font-black tracking-[-0.04em] sm:text-4xl md:text-5xl">
-              Blessed God Is Great Dashboard
+              Admin Dashboard
             </h1>
 
-            <p className="mt-3 break-all text-sm text-slate-500 sm:break-normal">
+            <p className="mt-3 break-all text-xs text-slate-500 sm:break-normal sm:text-sm">
               Signed in as {email}
             </p>
           </div>
 
-          {activeTab ===
-            "inventory" && (
-            <button
-              onClick={() =>
-                router.push(
-                  "/admin/vehicles/new",
-                )
-              }
-              className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#a8750e] via-[#d6a62b] to-[#f2ca61] px-6 py-3.5 text-sm font-black text-[#080603]"
-            >
-              <FiPlus />
-              Add New Vehicle
-            </button>
-          )}
+          <button
+            onClick={() =>
+              router.push(
+                "/admin/vehicles/new",
+              )
+            }
+            className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#a8750e] via-[#d6a62b] to-[#f2ca61] px-6 py-3.5 text-sm font-black text-[#080603] shadow-[0_12px_35px_rgba(214,166,43,0.12)]"
+          >
+            <FiPlus />
+            Add Vehicle
+          </button>
         </div>
 
-        {/* =====================================================
-            TABS
-        ====================================================== */}
+        {/* QUICK OVERVIEW */}
 
-        <div className="mt-9 flex w-full gap-2 overflow-x-auto rounded-2xl border border-[#d6a62b]/15 bg-[#0a0906] p-2 sm:w-fit">
+        <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <OverviewCard
+            title="Available Vehicles"
+            value={vehicleStats.available}
+            note={`${vehicleStats.total} total listings`}
+            icon="🚘"
+          />
+
+          <OverviewCard
+            title="Reserved"
+            value={vehicleStats.reserved}
+            note={`${vehicleStats.sold} sold`}
+            icon="🔑"
+          />
+
+          <OverviewCard
+            title="New Enquiries"
+            value={enquiryStats.new}
+            note={`${enquiryStats.total} total enquiries`}
+            icon="💬"
+            alert={
+              enquiryStats.new > 0
+            }
+          />
+
+          <OverviewCard
+            title="Hidden Listings"
+            value={vehicleStats.hidden}
+            note="Not visible to customers"
+            icon="👁"
+          />
+        </div>
+
+        {/* TABS */}
+
+        <div className="mt-8 flex w-full gap-2 overflow-x-auto rounded-2xl border border-[#d6a62b]/15 bg-[#0a0906] p-2 sm:w-fit">
           <button
             type="button"
             onClick={() =>
@@ -666,288 +965,424 @@ export default function AdminDashboard() {
           </button>
         </div>
 
-        {/* =====================================================
-            INVENTORY TAB
-        ====================================================== */}
+        {/* INVENTORY TAB */}
 
         {activeTab ===
           "inventory" && (
           <>
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-              {[
-                [
-                  vehicleStats.total,
-                  "Total Vehicles",
-                ],
+            <div className="mt-7 rounded-[24px] border border-[#d6a62b]/15 bg-[#0d0b07] p-4 sm:p-5">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div className="relative flex-1">
+                  <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#806c3c]" />
 
-                [
-                  vehicleStats.available,
-                  "Available",
-                ],
+                  <input
+                    value={
+                      inventorySearch
+                    }
+                    onChange={(event) =>
+                      setInventorySearch(
+                        event.target
+                          .value,
+                      )
+                    }
+                    placeholder="Search vehicle, brand, model, year, colour..."
+                    className="gz-input pl-11 pr-11"
+                  />
 
-                [
-                  vehicleStats.reserved,
-                  "Reserved",
-                ],
+                  {inventorySearch && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setInventorySearch(
+                          "",
+                        )
+                      }
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 transition hover:text-white"
+                    >
+                      <FiX />
+                    </button>
+                  )}
+                </div>
 
-                [
-                  vehicleStats.sold,
-                  "Sold",
-                ],
-              ].map(
-                ([
-                  value,
-                  label,
-                ]) => (
-                  <div
-                    key={String(
-                      label,
-                    )}
-                    className="rounded-[20px] border border-[#d6a62b]/15 bg-[#0d0b07] p-4 sm:rounded-[22px] sm:p-6"
-                  >
-                    <p className="text-2xl font-black text-[#f2c857] sm:text-3xl">
-                      {value}
-                    </p>
+                <div className="flex gap-2 overflow-x-auto pb-1 lg:pb-0">
+                  {inventoryFilters.map(
+                    (item) => (
+                      <button
+                        key={item.value}
+                        type="button"
+                        onClick={() =>
+                          setInventoryFilter(
+                            item.value,
+                          )
+                        }
+                        className={`whitespace-nowrap rounded-full border px-4 py-2.5 text-[10px] font-black transition ${
+                          inventoryFilter ===
+                          item.value
+                            ? "border-[#d6a62b] bg-[#d6a62b] text-black"
+                            : "border-[#d6a62b]/15 bg-black/20 text-slate-400 hover:border-[#d6a62b]/30 hover:text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ),
+                  )}
+                </div>
+              </div>
 
-                    <p className="mt-2 text-[8px] font-bold uppercase tracking-[0.12em] text-slate-500 sm:text-xs sm:tracking-[0.16em]">
-                      {label}
-                    </p>
-                  </div>
-                ),
-              )}
+              <p className="mt-4 text-[10px] text-slate-600">
+                Showing{" "}
+                <span className="font-black text-[#d6a62b]">
+                  {
+                    filteredVehicles.length
+                  }
+                </span>{" "}
+                of {vehicles.length} vehicles
+              </p>
             </div>
 
             {inventoryError && (
-              <div className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/10 px-5 py-4 text-sm text-red-300">
+              <div className="mt-5 rounded-2xl border border-red-500/20 bg-red-500/10 px-5 py-4 text-sm text-red-300">
                 {inventoryError}
               </div>
             )}
 
             {vehicles.length ===
             0 ? (
-              <div className="mt-8 rounded-[28px] border border-[#d6a62b]/15 bg-[#0d0b07]/70 p-8 sm:p-12">
-                <div className="mx-auto max-w-[500px] text-center">
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[#d6a62b]/20 bg-[#d6a62b]/10 text-2xl">
-                    🚘
-                  </div>
-
-                  <h2 className="mt-5 text-xl font-black">
-                    No vehicles yet
-                  </h2>
-
-                  <p className="mt-3 text-sm leading-7 text-slate-500">
-                    Add the first
-                    Blessed God Is Great
-                    vehicle to begin
-                    building the live
-                    dealership
-                    inventory.
-                  </p>
-
-                  <button
-                    onClick={() =>
-                      router.push(
-                        "/admin/vehicles/new",
-                      )
-                    }
-                    className="mt-6 rounded-full bg-[#d6a62b] px-6 py-3 text-sm font-black text-black"
-                  >
-                    Add First Vehicle
-                  </button>
-                </div>
-              </div>
+              <EmptyState
+                title="No vehicles yet"
+                text="Add your first vehicle to begin building the live dealership inventory."
+                buttonText="Add First Vehicle"
+                onClick={() =>
+                  router.push(
+                    "/admin/vehicles/new",
+                  )
+                }
+              />
+            ) : filteredVehicles.length ===
+              0 ? (
+              <EmptyState
+                title="No matching vehicles"
+                text="Try a different search or clear the current filter."
+                buttonText="Clear Filters"
+                onClick={() => {
+                  setInventorySearch(
+                    "",
+                  );
+                  setInventoryFilter(
+                    "all",
+                  );
+                }}
+              />
             ) : (
-              <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                {vehicles.map(
-                  (vehicle) => (
-                    <article
-                      key={
-                        vehicle.id
-                      }
-                      className="overflow-hidden rounded-[24px] border border-[#d6a62b]/15 bg-[#0d0b07]"
-                    >
-                      <div className="relative h-[220px] bg-black">
-                        {vehicle.cover_image_url ? (
-                          <img
-                            src={
-                              vehicle.cover_image_url
-                            }
-                            alt={
-                              vehicle.name
-                            }
-                            className="h-full w-full object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full items-center justify-center text-4xl">
-                            🚘
-                          </div>
-                        )}
+              <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {filteredVehicles.map(
+                  (vehicle) => {
+                    const busy =
+                      vehicleActionId ===
+                      vehicle.id;
 
-                        <VehicleStatusBadge
-                          status={
-                            vehicle.status
-                          }
-                        />
-                      </div>
-
-                      <div className="p-5">
-                        <p className="text-[8px] font-black uppercase tracking-[0.2em] text-[#d6a62b]">
-                          {
-                            vehicle.brand
-                          }
-                        </p>
-
-                        <h2 className="mt-2 text-xl font-black">
-                          {
-                            vehicle.name
-                          }
-                        </h2>
-
-                        <p className="mt-3 text-lg font-black text-[#f2c857]">
-                          {formatPrice(
-                            vehicle.price,
-                            vehicle.currency,
-                          )}
-                        </p>
-
-                        <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-500">
-                          {vehicle.year && (
-                            <span>
-                              {
-                                vehicle.year
+                    return (
+                      <article
+                        key={
+                          vehicle.id
+                        }
+                        className="overflow-hidden rounded-[24px] border border-[#d6a62b]/15 bg-[#0d0b07] shadow-[0_20px_55px_rgba(0,0,0,0.2)]"
+                      >
+                        <div className="relative h-[220px] bg-black">
+                          {vehicle.cover_image_url ? (
+                            <img
+                              src={
+                                vehicle.cover_image_url
                               }
+                              alt={
+                                vehicle.name
+                              }
+                              className="h-full w-full object-cover"
+                            />
+                          ) : (
+                            <div className="flex h-full items-center justify-center text-4xl">
+                              🚘
+                            </div>
+                          )}
+
+                          <VehicleStatusBadge
+                            status={
+                              vehicle.status
+                            }
+                          />
+
+                          {vehicle.is_featured && (
+                            <span className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full border border-[#d6a62b]/35 bg-black/70 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.15em] text-[#f2c857] backdrop-blur">
+                              <FiStar />
+                              Featured
                             </span>
-                          )}
-
-                          {vehicle.transmission && (
-                            <>
-                              <span>
-                                •
-                              </span>
-
-                              <span>
-                                {
-                                  vehicle.transmission
-                                }
-                              </span>
-                            </>
-                          )}
-
-                          {vehicle.color && (
-                            <>
-                              <span>
-                                •
-                              </span>
-
-                              <span>
-                                {
-                                  vehicle.color
-                                }
-                              </span>
-                            </>
                           )}
                         </div>
 
-                        <button
-                          onClick={() =>
-                            router.push(
-                              `/admin/vehicles/${vehicle.id}`,
-                            )
-                          }
-                          className="mt-5 flex w-full items-center justify-center gap-2 rounded-full border border-[#d6a62b]/20 px-5 py-3 text-sm font-bold text-[#e4bd58] transition hover:bg-[#d6a62b]/10"
-                        >
-                          <FiEdit3 />
-                          Manage Vehicle
-                        </button>
-                      </div>
-                    </article>
-                  ),
+                        <div className="p-5">
+                          <p className="text-[8px] font-black uppercase tracking-[0.2em] text-[#d6a62b]">
+                            {
+                              vehicle.brand
+                            }
+                          </p>
+
+                          <h2 className="mt-2 line-clamp-1 text-xl font-black">
+                            {
+                              vehicle.name
+                            }
+                          </h2>
+
+                          <p className="mt-3 text-lg font-black text-[#f2c857]">
+                            {formatPrice(
+                              vehicle.price,
+                              vehicle.currency,
+                            )}
+                          </p>
+
+                          <div className="mt-4 flex min-h-[20px] flex-wrap items-center gap-2 text-xs text-slate-500">
+                            {vehicle.year && (
+                              <span>
+                                {
+                                  vehicle.year
+                                }
+                              </span>
+                            )}
+
+                            {vehicle.transmission && (
+                              <>
+                                <span>
+                                  •
+                                </span>
+
+                                <span>
+                                  {
+                                    vehicle.transmission
+                                  }
+                                </span>
+                              </>
+                            )}
+
+                            {vehicle.color && (
+                              <>
+                                <span>
+                                  •
+                                </span>
+
+                                <span>
+                                  {
+                                    vehicle.color
+                                  }
+                                </span>
+                              </>
+                            )}
+                          </div>
+
+                          <div className="mt-5 rounded-2xl border border-white/5 bg-black/25 p-3">
+                            <p className="text-[8px] font-black uppercase tracking-[0.15em] text-slate-600">
+                              Quick Status
+                            </p>
+
+                            <div className="mt-2 grid grid-cols-4 gap-1.5">
+                              {(
+                                [
+                                  "available",
+                                  "reserved",
+                                  "sold",
+                                  "hidden",
+                                ] as VehicleStatus[]
+                              ).map(
+                                (
+                                  nextStatus,
+                                ) => (
+                                  <button
+                                    key={
+                                      nextStatus
+                                    }
+                                    type="button"
+                                    disabled={
+                                      busy
+                                    }
+                                    onClick={() =>
+                                      updateVehicleStatus(
+                                        vehicle.id,
+                                        nextStatus,
+                                      )
+                                    }
+                                    title={`Mark ${nextStatus}`}
+                                    className={`rounded-lg border px-1 py-2 text-[8px] font-black capitalize transition disabled:opacity-40 ${
+                                      vehicle.status ===
+                                      nextStatus
+                                        ? "border-[#d6a62b] bg-[#d6a62b] text-black"
+                                        : "border-white/5 bg-white/[0.025] text-slate-500 hover:border-[#d6a62b]/20 hover:text-white"
+                                    }`}
+                                  >
+                                    {
+                                      nextStatus
+                                    }
+                                  </button>
+                                ),
+                              )}
+                            </div>
+                          </div>
+
+                          <button
+                            type="button"
+                            disabled={busy}
+                            onClick={() =>
+                              toggleFeatured(
+                                vehicle,
+                              )
+                            }
+                            className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl border px-4 py-2.5 text-[10px] font-black transition disabled:opacity-40 ${
+                              vehicle.is_featured
+                                ? "border-[#d6a62b]/40 bg-[#d6a62b]/10 text-[#f2c857]"
+                                : "border-white/5 bg-black/20 text-slate-500 hover:border-[#d6a62b]/20 hover:text-white"
+                            }`}
+                          >
+                            <FiStar />
+                            {vehicle.is_featured
+                              ? "Remove Featured"
+                              : "Feature Vehicle"}
+                          </button>
+
+                          <div className="mt-3 grid grid-cols-2 gap-2">
+                            <a
+                              href={`/vehicles/${vehicle.id}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="flex items-center justify-center gap-2 rounded-full border border-white/5 px-4 py-3 text-[10px] font-black text-slate-400 transition hover:border-[#d6a62b]/20 hover:text-white"
+                            >
+                              <FiExternalLink />
+                              View
+                            </a>
+
+                            <button
+                              onClick={() =>
+                                router.push(
+                                  `/admin/vehicles/${vehicle.id}`,
+                                )
+                              }
+                              className="flex items-center justify-center gap-2 rounded-full border border-[#d6a62b]/20 px-4 py-3 text-[10px] font-black text-[#e4bd58] transition hover:bg-[#d6a62b]/10"
+                            >
+                              <FiEdit3 />
+                              Manage
+                            </button>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  },
                 )}
               </div>
             )}
           </>
         )}
 
-        {/* =====================================================
-            ENQUIRIES TAB
-        ====================================================== */}
+        {/* ENQUIRIES TAB */}
 
         {activeTab ===
           "enquiries" && (
           <>
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-              {[
-                [
-                  enquiryStats.total,
-                  "Total Enquiries",
-                ],
+            <div className="mt-7 rounded-[24px] border border-[#d6a62b]/15 bg-[#0d0b07] p-4 sm:p-5">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div className="relative flex-1">
+                  <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#806c3c]" />
 
-                [
-                  enquiryStats.new,
-                  "New",
-                ],
+                  <input
+                    value={
+                      enquirySearch
+                    }
+                    onChange={(event) =>
+                      setEnquirySearch(
+                        event.target
+                          .value,
+                      )
+                    }
+                    placeholder="Search customer, vehicle, phone or email..."
+                    className="gz-input pl-11 pr-11"
+                  />
 
-                [
-                  enquiryStats.contacted,
-                  "Contacted",
-                ],
+                  {enquirySearch && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setEnquirySearch(
+                          "",
+                        )
+                      }
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 transition hover:text-white"
+                    >
+                      <FiX />
+                    </button>
+                  )}
+                </div>
 
-                [
-                  enquiryStats.closed,
-                  "Closed",
-                ],
-              ].map(
-                ([
-                  value,
-                  label,
-                ]) => (
-                  <div
-                    key={String(
-                      label,
-                    )}
-                    className="rounded-[20px] border border-[#d6a62b]/15 bg-[#0d0b07] p-4 sm:rounded-[22px] sm:p-6"
-                  >
-                    <p className="text-2xl font-black text-[#f2c857] sm:text-3xl">
-                      {value}
-                    </p>
+                <div className="flex gap-2 overflow-x-auto pb-1 lg:pb-0">
+                  {enquiryFilters.map(
+                    (item) => (
+                      <button
+                        key={item.value}
+                        type="button"
+                        onClick={() =>
+                          setEnquiryFilter(
+                            item.value,
+                          )
+                        }
+                        className={`whitespace-nowrap rounded-full border px-4 py-2.5 text-[10px] font-black transition ${
+                          enquiryFilter ===
+                          item.value
+                            ? "border-[#d6a62b] bg-[#d6a62b] text-black"
+                            : "border-[#d6a62b]/15 bg-black/20 text-slate-400 hover:border-[#d6a62b]/30 hover:text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ),
+                  )}
+                </div>
+              </div>
 
-                    <p className="mt-2 text-[8px] font-bold uppercase tracking-[0.12em] text-slate-500 sm:text-xs sm:tracking-[0.16em]">
-                      {label}
-                    </p>
-                  </div>
-                ),
-              )}
+              <p className="mt-4 text-[10px] text-slate-600">
+                Showing{" "}
+                <span className="font-black text-[#d6a62b]">
+                  {
+                    filteredEnquiries.length
+                  }
+                </span>{" "}
+                of {enquiries.length} enquiries
+              </p>
             </div>
 
             {enquiryError && (
-              <div className="mt-6 rounded-2xl border border-red-500/20 bg-red-500/10 px-5 py-4 text-sm text-red-300">
+              <div className="mt-5 rounded-2xl border border-red-500/20 bg-red-500/10 px-5 py-4 text-sm text-red-300">
                 {enquiryError}
               </div>
             )}
 
             {enquiries.length ===
             0 ? (
-              <div className="mt-8 rounded-[28px] border border-[#d6a62b]/15 bg-[#0d0b07]/70 p-8 sm:p-12">
-                <div className="mx-auto max-w-[500px] text-center">
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[#d6a62b]/20 bg-[#d6a62b]/10 text-2xl text-[#f2c857]">
-                    <FiInbox />
-                  </div>
-
-                  <h2 className="mt-5 text-xl font-black">
-                    No enquiries yet
-                  </h2>
-
-                  <p className="mt-3 text-sm leading-7 text-slate-500">
-                    Customer
-                    enquiries submitted
-                    from vehicle pages
-                    will appear here.
-                  </p>
-                </div>
-              </div>
+              <EmptyState
+                title="No enquiries yet"
+                text="Customer enquiries submitted from vehicle pages will appear here."
+              />
+            ) : filteredEnquiries.length ===
+              0 ? (
+              <EmptyState
+                title="No matching enquiries"
+                text="Try another search or clear the enquiry filter."
+                buttonText="Clear Filters"
+                onClick={() => {
+                  setEnquirySearch(
+                    "",
+                  );
+                  setEnquiryFilter(
+                    "all",
+                  );
+                }}
+              />
             ) : (
-              <div className="mt-8 space-y-4">
-                {enquiries.map(
+              <div className="mt-6 space-y-4">
+                {filteredEnquiries.map(
                   (enquiry) => {
                     const busy =
                       enquiryActionId ===
@@ -958,16 +1393,11 @@ export default function AdminDashboard() {
                         key={
                           enquiry.id
                         }
-                        className={`overflow-hidden rounded-[24px] border bg-[#0d0b07] ${
-                          enquiry.status ===
-                          "new"
-                            ? "border-[#d6a62b]/40 shadow-[0_0_35px_rgba(214,166,43,0.06)]"
-                            : "border-[#d6a62b]/15"
-                        }`}
+                        className="overflow-hidden rounded-[24px] border border-[#d6a62b]/15 bg-[#0d0b07]"
                       >
                         <div className="p-5 sm:p-6">
-                          <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-start">
-                            <div className="min-w-0">
+                          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start">
+                            <div>
                               <div className="flex flex-wrap items-center gap-2">
                                 <EnquiryStatusBadge
                                   status={
@@ -1025,7 +1455,7 @@ export default function AdminDashboard() {
                             )}
                           </div>
 
-                          <div className="mt-6 grid gap-3 md:grid-cols-2">
+                          <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
                             {enquiry.phone && (
                               <a
                                 href={`tel:${enquiry.phone}`}
@@ -1037,13 +1467,40 @@ export default function AdminDashboard() {
 
                                 <div className="min-w-0">
                                   <p className="text-[8px] font-black uppercase tracking-[0.16em] text-slate-600">
-                                    Phone
+                                    Call
                                   </p>
 
                                   <p className="mt-1 truncate text-sm font-bold text-white">
                                     {
                                       enquiry.phone
                                     }
+                                  </p>
+                                </div>
+                              </a>
+                            )}
+
+                            {enquiry.phone && (
+                              <a
+                                href={`https://wa.me/${normalizeWhatsApp(
+                                  enquiry.phone,
+                                )}?text=${encodeURIComponent(
+                                  `Hello ${enquiry.customer_name}, this is Blessed God Is Great Motor Autos regarding your enquiry about ${enquiry.vehicle_name}.`,
+                                )}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="flex items-center gap-3 rounded-2xl border border-green-500/15 bg-green-500/[0.05] p-4 transition hover:border-green-500/30"
+                              >
+                                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-500/10 text-green-300">
+                                  <FaWhatsapp />
+                                </span>
+
+                                <div className="min-w-0">
+                                  <p className="text-[8px] font-black uppercase tracking-[0.16em] text-green-500/60">
+                                    WhatsApp
+                                  </p>
+
+                                  <p className="mt-1 text-sm font-bold text-green-300">
+                                    Message Customer
                                   </p>
                                 </div>
                               </a>
@@ -1179,9 +1636,90 @@ export default function AdminDashboard() {
   );
 }
 
-/* =========================================================
-   VEHICLE STATUS
-========================================================= */
+function OverviewCard({
+  title,
+  value,
+  note,
+  icon,
+  alert = false,
+}: {
+  title: string;
+  value: number;
+  note: string;
+  icon: string;
+  alert?: boolean;
+}) {
+  return (
+    <div
+      className={`rounded-[22px] border p-5 ${
+        alert
+          ? "border-[#d6a62b]/35 bg-[#d6a62b]/[0.07]"
+          : "border-[#d6a62b]/15 bg-[#0d0b07]"
+      }`}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-500">
+            {title}
+          </p>
+
+          <p className="mt-3 text-3xl font-black text-[#f2c857]">
+            {value}
+          </p>
+        </div>
+
+        <span className="text-2xl">
+          {icon}
+        </span>
+      </div>
+
+      <p className="mt-3 text-[10px] text-slate-600">
+        {note}
+      </p>
+    </div>
+  );
+}
+
+function EmptyState({
+  title,
+  text,
+  buttonText,
+  onClick,
+}: {
+  title: string;
+  text: string;
+  buttonText?: string;
+  onClick?: () => void;
+}) {
+  return (
+    <div className="mt-6 rounded-[28px] border border-[#d6a62b]/15 bg-[#0d0b07]/70 p-8 sm:p-12">
+      <div className="mx-auto max-w-[500px] text-center">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[#d6a62b]/20 bg-[#d6a62b]/10 text-2xl">
+          🚘
+        </div>
+
+        <h2 className="mt-5 text-xl font-black">
+          {title}
+        </h2>
+
+        <p className="mt-3 text-sm leading-7 text-slate-500">
+          {text}
+        </p>
+
+        {buttonText &&
+          onClick && (
+            <button
+              type="button"
+              onClick={onClick}
+              className="mt-6 rounded-full bg-[#d6a62b] px-6 py-3 text-sm font-black text-black"
+            >
+              {buttonText}
+            </button>
+          )}
+      </div>
+    </div>
+  );
+}
 
 function VehicleStatusBadge({
   status,
@@ -1210,10 +1748,6 @@ function VehicleStatusBadge({
     </span>
   );
 }
-
-/* =========================================================
-   ENQUIRY STATUS
-========================================================= */
 
 function EnquiryStatusBadge({
   status,

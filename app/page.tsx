@@ -8,6 +8,7 @@ import {
   FiArrowUpRight,
   FiCheck,
   FiChevronRight,
+  FiChevronUp,
   FiClock,
   FiMail,
   FiMapPin,
@@ -131,6 +132,63 @@ const benefits = [
   "Reliable vehicle sourcing",
 ];
 
+const premiumShowcase = [
+  {
+    brand: "LEXUS",
+    label: "RX",
+    image:
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lexus_RX_300_%28front%29_24_September_2024.jpg?width=1600",
+    credit: "メイド理世",
+    source:
+      "https://commons.wikimedia.org/wiki/File:Lexus_RX_300_(front)_24_September_2024.jpg",
+  },
+  {
+    brand: "MERCEDES-BENZ",
+    label: "G-Class",
+    image:
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/2024_Mercedes-Benz_G-Class_G450d.jpg?width=1600",
+    credit: "Chanokchon",
+    source:
+      "https://commons.wikimedia.org/wiki/File:2024_Mercedes-Benz_G-Class_G450d.jpg",
+  },
+  {
+    brand: "RANGE ROVER",
+    label: "Evoque",
+    image:
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Range_Rover_Evoque_%28L551%29_IMG_9465_%28cropped%29.jpg?width=1600",
+    credit: "Alexander-93",
+    source:
+      "https://commons.wikimedia.org/wiki/File:Range_Rover_Evoque_(L551)_IMG_9465_(cropped).jpg",
+  },
+  {
+    brand: "BMW",
+    label: "7 Series",
+    image:
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW_7-Series_%28G70%29_750e_1X7A2461.jpg?width=1600",
+    credit: "Alexander-93",
+    source:
+      "https://commons.wikimedia.org/wiki/File:BMW_7-Series_(G70)_750e_1X7A2461.jpg",
+  },
+  {
+    brand: "TOYOTA",
+    label: "Camry",
+    image:
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/2025_Toyota_Camry.jpg?width=1600",
+    credit: "Clock38030",
+    source:
+      "https://commons.wikimedia.org/wiki/File:2025_Toyota_Camry.jpg",
+  },
+  {
+    brand: "TOYOTA",
+    label: "Corolla",
+    image:
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Toyota_Corolla_2025%2B_For_Guangzhou_Auto_Show_2025.jpg?width=1600",
+    credit: "Nissangeniss",
+    source:
+      "https://commons.wikimedia.org/wiki/File:Toyota_Corolla_2025%2B_For_Guangzhou_Auto_Show_2025.jpg",
+  },
+];
+
 /* =========================================================
    BRANDS
 ========================================================= */
@@ -218,106 +276,25 @@ function BlackGoldAtmosphere() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 50% 52%, rgba(255,177,0,0.12), transparent 30%), radial-gradient(circle at 15% 20%, rgba(255,215,106,0.07), transparent 22%), radial-gradient(circle at 85% 22%, rgba(255,174,0,0.07), transparent 22%), linear-gradient(to bottom, #090805, #030303 58%, #080604)",
+            "radial-gradient(circle at 50% 52%, rgba(255,177,0,0.10), transparent 30%), radial-gradient(circle at 15% 20%, rgba(255,215,106,0.05), transparent 22%), radial-gradient(circle at 85% 22%, rgba(255,174,0,0.05), transparent 22%), linear-gradient(to bottom, #090805, #030303 58%, #080604)",
         }}
       />
 
-      <motion.div
-        animate={{
-          opacity: [0.08, 0.28, 0.08],
-          scale: [0.9, 1.15, 0.9],
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="pointer-events-none absolute left-[-8%] top-[5%] h-[430px] w-[430px] rounded-full bg-[#ffb000]/10 blur-[130px]"
-      />
+      <div className="pointer-events-none absolute left-[-5%] top-[7%] h-[300px] w-[300px] rounded-full bg-[#ffb000]/7 blur-[90px]" />
+      <div className="pointer-events-none absolute right-[-4%] top-[12%] h-[300px] w-[300px] rounded-full bg-[#ffd76a]/7 blur-[90px]" />
+      <div className="pointer-events-none absolute bottom-[2%] left-1/2 h-[30px] w-[62%] -translate-x-1/2 rounded-[100%] bg-[#ffb000]/7 blur-[24px]" />
 
-      <motion.div
-        animate={{
-          opacity: [0.08, 0.24, 0.08],
-          scale: [1, 1.15, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="pointer-events-none absolute right-[-5%] top-[10%] h-[400px] w-[400px] rounded-full bg-[#ffd76a]/10 blur-[130px]"
-      />
+      <div className="pointer-events-none absolute left-1/2 top-[52%] h-px w-[85%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#d6a62b]/20 to-transparent" />
 
-      <motion.div
-        animate={{
-          opacity: [0.08, 0.22, 0.08],
-          scaleX: [0.85, 1.12, 0.85],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="pointer-events-none absolute bottom-[2%] left-1/2 h-[45px] w-[70%] -translate-x-1/2 rounded-[100%] bg-[#ffb000]/10 blur-[32px]"
-      />
-
-      <div className="pointer-events-none absolute left-1/2 top-[52%] h-px w-[85%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#d6a62b]/25 to-transparent" />
-
-      <motion.span
-        animate={{
-          opacity: [0.1, 0.9, 0.1],
-          y: [0, -14, 0],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-        }}
-        className="pointer-events-none absolute left-[8%] top-[30%] h-[4px] w-[4px] rounded-full bg-[#ffd15a] shadow-[0_0_15px_5px_rgba(255,195,50,0.3)]"
-      />
-
-      <motion.span
-        animate={{
-          opacity: [0.1, 0.7, 0.1],
-          y: [0, 17, 0],
-        }}
-        transition={{
-          duration: 5.5,
-          repeat: Infinity,
-          delay: 0.7,
-        }}
-        className="pointer-events-none absolute left-[27%] top-[18%] h-[3px] w-[3px] rounded-full bg-[#ffb620] shadow-[0_0_14px_4px_rgba(255,182,32,0.3)]"
-      />
-
-      <motion.span
-        animate={{
-          opacity: [0.1, 0.85, 0.1],
-          y: [0, -18, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          delay: 1,
-        }}
-        className="pointer-events-none absolute right-[20%] top-[28%] h-[4px] w-[4px] rounded-full bg-[#ffd76a] shadow-[0_0_17px_5px_rgba(255,215,106,0.3)]"
-      />
-
-      <motion.span
-        animate={{
-          opacity: [0.1, 0.8, 0.1],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-        }}
-        className="pointer-events-none absolute bottom-[20%] right-[8%] h-[3px] w-[3px] rounded-full bg-[#ffad00] shadow-[0_0_15px_5px_rgba(255,174,0,0.3)]"
-      />
+      <span className="pointer-events-none absolute left-[8%] top-[30%] h-[3px] w-[3px] rounded-full bg-[#ffd15a]/70 shadow-[0_0_10px_3px_rgba(255,195,50,0.2)]" />
+      <span className="pointer-events-none absolute right-[20%] top-[28%] h-[3px] w-[3px] rounded-full bg-[#ffd76a]/60 shadow-[0_0_10px_3px_rgba(255,215,106,0.18)]" />
 
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.08]"
+        className="pointer-events-none absolute inset-0 opacity-[0.055]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, rgba(255,193,55,0.55) 1px, transparent 1px)",
-          backgroundSize: "95px 95px",
+            "radial-gradient(circle, rgba(255,193,55,0.5) 1px, transparent 1px)",
+          backgroundSize: "105px 105px",
         }}
       />
     </>
@@ -325,7 +302,7 @@ function BlackGoldAtmosphere() {
 }
 
 /* =========================================================
-   LIVE PUBLIC INVENTORY
+   FEATURED PUBLIC INVENTORY
 ========================================================= */
 
 function PublicInventory() {
@@ -358,12 +335,13 @@ function PublicInventory() {
       `,
       )
       .neq("status", "hidden")
-      .order("is_featured", { ascending: false })
-      .order("created_at", { ascending: false });
+      .eq("is_featured", true)
+      .order("created_at", { ascending: false })
+      .limit(5);
 
     if (error) {
-      console.error("Unable to load public inventory:", error);
-      setInventoryError("Unable to load vehicle inventory right now.");
+      console.error("Unable to load featured vehicles:", error);
+      setInventoryError("Unable to load featured vehicles right now.");
       setLoading(false);
       return;
     }
@@ -384,32 +362,42 @@ function PublicInventory() {
       <BlackGoldAtmosphere />
 
       <div className="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 xl:px-12">
-        <div className="flex flex-col justify-between gap-7 md:flex-row md:items-end">
+        {/* SECTION HEADER */}
+
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <div>
             <div className="mb-4 flex items-center gap-3">
               <span className="h-px w-8 bg-[#e5b53c]" />
 
               <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#f2c857] sm:text-[10px]">
-                Live Inventory
+                Owner&apos;s Selection
               </span>
             </div>
 
-            <h2 className="max-w-[750px] text-4xl font-black tracking-[-0.045em] text-white sm:text-5xl md:text-6xl">
-              Built for the road.
+            <h2 className="max-w-[760px] text-4xl font-black leading-[1.02] tracking-[-0.05em] text-white sm:text-5xl md:text-6xl">
+              Featured cars.
               <br />
 
-              <span className="bg-gradient-to-r from-[#d6a62b] via-[#ffe08a] to-[#c69119] bg-clip-text text-transparent">
-                Selected for you.
+              <span className="bg-gradient-to-r from-[#c99320] via-[#ffd76a] to-[#fff1b4] bg-clip-text text-transparent">
+                Chosen to stand out.
               </span>
             </h2>
+
+            <p className="mt-5 max-w-[620px] text-sm leading-7 text-slate-400">
+              A curated selection personally highlighted by the dealership.
+              Explore these picks here, or browse the complete inventory to
+              compare every available vehicle.
+            </p>
           </div>
 
-          <div className="max-w-[430px]">
-            <p className="text-sm leading-7 text-slate-400">
-              Explore the current Blessed God Is Great vehicle collection. Availability,
-              prices and vehicle details are updated directly by our inventory
-              team.
-            </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="/vehicles"
+              className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-[#a8750e] via-[#d6a62b] to-[#f2ca61] px-6 py-3.5 text-[10px] font-black uppercase tracking-[0.12em] text-[#080603] shadow-[0_14px_40px_rgba(214,166,43,0.16)] transition hover:-translate-y-0.5"
+            >
+              Explore All Vehicles
+              <FiArrowRight className="transition group-hover:translate-x-1" />
+            </a>
 
             <button
               type="button"
@@ -417,32 +405,40 @@ function PublicInventory() {
                 setLoading(true);
                 loadVehicles();
               }}
-              className="mt-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.16em] text-[#c8a550] transition hover:text-[#f2c857]"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d6a62b]/20 text-[#d6a62b] transition hover:bg-[#d6a62b]/10"
+              aria-label="Refresh featured vehicles"
             >
               <FiRefreshCw className={loading ? "animate-spin" : ""} />
-              Refresh Inventory
             </button>
           </div>
         </div>
 
-        {loading && (
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map((item) => (
-              <div
-                key={item}
-                className="overflow-hidden rounded-[28px] border border-[#d6a62b]/15 bg-[#0c0b08]/70"
-              >
-                <div className="h-[280px] animate-pulse bg-white/[0.04] sm:h-[320px]" />
+        {/* LOADING */}
 
-                <div className="p-6">
-                  <div className="h-3 w-24 animate-pulse rounded bg-white/[0.06]" />
-                  <div className="mt-4 h-7 w-[65%] animate-pulse rounded bg-white/[0.06]" />
-                  <div className="mt-5 h-5 w-[45%] animate-pulse rounded bg-white/[0.05]" />
+        {loading && (
+          <div className="mt-14 grid gap-5 lg:grid-cols-12">
+            <div className="overflow-hidden rounded-[30px] border border-[#d6a62b]/15 bg-[#0c0b08]/70 lg:col-span-8">
+              <div className="h-[390px] animate-pulse bg-white/[0.04] md:h-[520px]" />
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
+              {[1, 2].map((item) => (
+                <div
+                  key={item}
+                  className="overflow-hidden rounded-[26px] border border-[#d6a62b]/15 bg-[#0c0b08]/70"
+                >
+                  <div className="h-[210px] animate-pulse bg-white/[0.04]" />
+                  <div className="space-y-3 p-5">
+                    <div className="h-3 w-20 animate-pulse rounded bg-white/[0.05]" />
+                    <div className="h-6 w-2/3 animate-pulse rounded bg-white/[0.05]" />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
+
+        {/* ERROR */}
 
         {!loading && inventoryError && (
           <div className="mt-14 rounded-[24px] border border-red-500/20 bg-red-500/[0.05] px-6 py-10 text-center">
@@ -461,168 +457,328 @@ function PublicInventory() {
           </div>
         )}
 
+        {/* EMPTY */}
+
         {!loading && !inventoryError && vehicles.length === 0 && (
-          <div className="mt-14 rounded-[28px] border border-[#d6a62b]/15 bg-[#0c0b08]/65 px-6 py-16 text-center backdrop-blur-xl">
+          <div className="mt-14 rounded-[28px] border border-[#d6a62b]/15 bg-[#0c0b08]/65 px-6 py-16 text-center">
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[#d6a62b]/20 bg-[#d6a62b]/10 text-2xl">
               🚘
             </div>
 
-            <h3 className="mt-5 text-xl font-black">New inventory coming soon.</h3>
+            <h3 className="mt-5 text-xl font-black">
+              No featured vehicles selected yet.
+            </h3>
 
-            <p className="mx-auto mt-3 max-w-[500px] text-sm leading-7 text-slate-500">
-              Our vehicle collection is currently being updated. Please check
-              back soon.
+            <p className="mx-auto mt-3 max-w-[520px] text-sm leading-7 text-slate-500">
+              The owner can choose featured vehicles from the admin dashboard.
+              All public vehicles remain available in the full inventory.
             </p>
+
+            <a
+              href="/vehicles"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#d6a62b] px-6 py-3 text-xs font-black text-black transition hover:bg-[#f2c857]"
+            >
+              Browse Full Inventory
+              <FiArrowRight />
+            </a>
           </div>
         )}
 
+        {/* CURATED FEATURED LAYOUT */}
+
         {!loading && !inventoryError && vehicles.length > 0 && (
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {vehicles.map((vehicle) => {
-              const mileage = formatVehicleMileage(vehicle.mileage);
+          <>
+            <div className="mt-14 grid gap-5 lg:grid-cols-12">
+              {/* MAIN SPOTLIGHT */}
 
-              return (
+              {vehicles[0] && (
                 <a
-                  key={vehicle.id}
-                  href={`/vehicles/${vehicle.id}`}
-                  aria-label={`View ${vehicle.name}`}
-                  className="block cursor-pointer"
+                  href={`/vehicles/${vehicles[0].id}`}
+                  className="group relative min-h-[430px] overflow-hidden rounded-[30px] border border-[#d6a62b]/20 bg-black shadow-[0_35px_90px_rgba(0,0,0,0.5)] sm:min-h-[500px] lg:col-span-8 lg:min-h-[610px]"
+                  aria-label={`View ${vehicles[0].name}`}
                 >
-                  <motion.article
-                    initial={{ opacity: 0, y: 28 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.15 }}
-                    whileHover={{ y: -6 }}
-                    className="group relative h-full overflow-hidden rounded-[28px] border border-[#d6a62b]/20 bg-[#0c0b08]/80 shadow-[0_30px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl"
-                  >
-                  <div className="relative h-[280px] overflow-hidden bg-black sm:h-[320px] lg:h-[330px]">
-                    {vehicle.cover_image_url ? (
-                      <img
-                        src={vehicle.cover_image_url}
-                        alt={vehicle.name}
-                        className={`h-full w-full object-cover transition duration-700 group-hover:scale-105 ${
-                          vehicle.status === "sold"
-                            ? "opacity-55 grayscale-[20%]"
-                            : ""
-                        }`}
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center text-5xl">
-                        🚘
-                      </div>
-                    )}
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#050403] via-transparent to-black/15" />
-
-                    {vehicle.is_featured && (
-                      <span className="absolute left-5 top-5 rounded-full border border-[#f2c857]/25 bg-[#d6a62b]/90 px-4 py-2 text-[8px] font-black uppercase tracking-[0.18em] text-black shadow-[0_8px_30px_rgba(214,166,43,0.2)]">
-                        Featured
-                      </span>
-                    )}
-
-                    <div className="absolute right-5 top-5">
-                      <PublicStatusBadge status={vehicle.status} />
+                  {vehicles[0].cover_image_url ? (
+                    <img
+                      src={vehicles[0].cover_image_url}
+                      alt={vehicles[0].name}
+                      loading="lazy"
+                      decoding="async"
+                      className={`absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025] ${
+                        vehicles[0].status === "sold"
+                          ? "opacity-60 grayscale-[20%]"
+                          : ""
+                      }`}
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-6xl">
+                      🚘
                     </div>
+                  )}
 
-                    {vehicle.status === "sold" && (
-                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                        <span className="-rotate-6 rounded-xl border-2 border-red-400/80 bg-black/70 px-7 py-3 text-xl font-black uppercase tracking-[0.25em] text-red-300 backdrop-blur-sm">
-                          Sold
-                        </span>
-                      </div>
-                    )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-black/10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-transparent" />
+
+                  <div className="absolute left-5 top-5 flex flex-wrap items-center gap-2 sm:left-7 sm:top-7">
+                    <span className="rounded-full bg-[#d6a62b] px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.16em] text-black">
+                      Spotlight
+                    </span>
+
+                    <PublicStatusBadge status={vehicles[0].status} />
                   </div>
 
-                  <div className="p-5 sm:p-6">
-                    <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#d9ad41]">
-                      {vehicle.brand}
+                  {vehicles[0].status === "sold" && (
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                      <span className="-rotate-6 rounded-xl border-2 border-red-400/80 bg-black/70 px-7 py-3 text-xl font-black uppercase tracking-[0.25em] text-red-300 backdrop-blur-sm">
+                        Sold
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-10">
+                    <p className="text-[9px] font-black uppercase tracking-[0.22em] text-[#e8bd51]">
+                      {vehicles[0].brand}
                     </p>
 
-                    <div className="mt-2 flex items-start justify-between gap-5">
+                    <div className="mt-3 flex items-end justify-between gap-5">
                       <div>
-                        <h3 className="text-xl font-black text-white sm:text-2xl">
-                          {vehicle.name}
+                        <h3 className="max-w-[700px] text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl md:text-5xl">
+                          {vehicles[0].name}
                         </h3>
 
-                        {vehicle.model &&
-                          vehicle.model.toLowerCase() !==
-                            vehicle.name.toLowerCase() && (
-                            <p className="mt-1 text-xs text-slate-500">
-                              {vehicle.model}
-                            </p>
+                        <p className="mt-4 text-xl font-black text-[#f2c857] sm:text-2xl">
+                          {formatVehiclePrice(
+                            vehicles[0].price,
+                            vehicles[0].currency,
                           )}
+                        </p>
+
+                        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-slate-300">
+                          {vehicles[0].year && (
+                            <span>{vehicles[0].year}</span>
+                          )}
+
+                          {vehicles[0].transmission && (
+                            <>
+                              <span className="h-1 w-1 rounded-full bg-[#d6a62b]" />
+                              <span>{vehicles[0].transmission}</span>
+                            </>
+                          )}
+
+                          {vehicles[0].color && (
+                            <>
+                              <span className="h-1 w-1 rounded-full bg-[#d6a62b]" />
+                              <span>{vehicles[0].color}</span>
+                            </>
+                          )}
+
+                          {formatVehicleMileage(vehicles[0].mileage) && (
+                            <>
+                              <span className="h-1 w-1 rounded-full bg-[#d6a62b]" />
+                              <span>
+                                {formatVehicleMileage(vehicles[0].mileage)}
+                              </span>
+                            </>
+                          )}
+                        </div>
                       </div>
 
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#d6a62b]/25 bg-[#d6a62b]/10 text-[#f0c65c] transition group-hover:bg-[#d6a62b] group-hover:text-black">
+                      <span className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#d6a62b]/30 bg-black/40 text-xl text-[#f2c857] backdrop-blur transition group-hover:bg-[#d6a62b] group-hover:text-black sm:flex">
                         <FiArrowUpRight />
-                      </div>
-                    </div>
-
-                    <p className="mt-5 text-xl font-black text-[#f2c857] sm:text-2xl">
-                      {formatVehiclePrice(vehicle.price, vehicle.currency)}
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-[#d6a62b]/15 pt-5 text-xs text-slate-400">
-                      {vehicle.year && <span>{vehicle.year}</span>}
-
-                      {vehicle.transmission && (
-                        <>
-                          <span className="h-1 w-1 rounded-full bg-[#d6a62b]" />
-                          <span>{vehicle.transmission}</span>
-                        </>
-                      )}
-
-                      {vehicle.color && (
-                        <>
-                          <span className="h-1 w-1 rounded-full bg-[#d6a62b]" />
-                          <span>{vehicle.color}</span>
-                        </>
-                      )}
-
-                      {mileage && (
-                        <>
-                          <span className="h-1 w-1 rounded-full bg-[#d6a62b]" />
-                          <span>{mileage}</span>
-                        </>
-                      )}
-                    </div>
-
-                    {vehicle.description && (
-                      <p className="mt-5 line-clamp-3 text-sm leading-7 text-slate-500">
-                        {vehicle.description}
-                      </p>
-                    )}
-
-                    <div
-                      className={`mt-6 rounded-xl border px-4 py-3 text-center text-[9px] font-black uppercase tracking-[0.16em] ${
-                        vehicle.status === "available"
-                          ? "border-green-500/20 bg-green-500/[0.05] text-green-300"
-                          : vehicle.status === "reserved"
-                            ? "border-amber-400/20 bg-amber-400/[0.05] text-amber-300"
-                            : "border-red-500/20 bg-red-500/[0.05] text-red-300"
-                      }`}
-                    >
-                      {vehicle.status === "available"
-                        ? "Available Now"
-                        : vehicle.status === "reserved"
-                          ? "Currently Reserved"
-                          : "Vehicle Sold"}
+                      </span>
                     </div>
                   </div>
-                  </motion.article>
                 </a>
-              );
-            })}
-          </div>
-        )}
+              )}
 
-        {!loading && !inventoryError && vehicles.length > 0 && (
-          <p className="mt-10 text-center text-[10px] uppercase tracking-[0.2em] text-[#6f603d]">
-            Inventory updated by Blessed God Is Great Motor Autos Int'l Ventures
-          </p>
+              {/* SECONDARY PICKS */}
+
+              <div className="grid gap-5 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1">
+                {vehicles.slice(1, 3).map((vehicle) => (
+                  <FeaturedCompactCard
+                    key={vehicle.id}
+                    vehicle={vehicle}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* MORE OWNER PICKS */}
+
+            {vehicles.length > 3 && (
+              <div className="mt-5 grid gap-5 md:grid-cols-2">
+                {vehicles.slice(3, 5).map((vehicle) => (
+                  <FeaturedWideCard
+                    key={vehicle.id}
+                    vehicle={vehicle}
+                  />
+                ))}
+              </div>
+            )}
+
+            <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-[22px] border border-[#d6a62b]/10 bg-[#0a0805] px-5 py-5 text-center sm:flex-row sm:text-left">
+              <div>
+                <p className="text-xs font-black text-white">
+                  Looking for something else?
+                </p>
+
+                <p className="mt-1 text-[11px] leading-5 text-slate-500">
+                  Search the complete inventory by brand, year, price and
+                  availability.
+                </p>
+              </div>
+
+              <a
+                href="/vehicles"
+                className="flex shrink-0 items-center gap-2 rounded-full border border-[#d6a62b]/25 px-5 py-3 text-[10px] font-black uppercase tracking-[0.12em] text-[#e6c15b] transition hover:bg-[#d6a62b]/10"
+              >
+                Full Inventory
+                <FiArrowRight />
+              </a>
+            </div>
+          </>
         )}
       </div>
     </section>
+  );
+}
+
+function FeaturedCompactCard({
+  vehicle,
+}: {
+  vehicle: PublicVehicle;
+}) {
+  return (
+    <a
+      href={`/vehicles/${vehicle.id}`}
+      className="group overflow-hidden rounded-[26px] border border-[#d6a62b]/15 bg-[#0c0b08] transition hover:-translate-y-1 hover:border-[#d6a62b]/30"
+    >
+      <div className="relative h-[220px] overflow-hidden bg-black lg:h-[230px]">
+        {vehicle.cover_image_url ? (
+          <img
+            src={vehicle.cover_image_url}
+            alt={vehicle.name}
+            loading="lazy"
+            decoding="async"
+            className={`h-full w-full object-cover transition duration-600 group-hover:scale-[1.03] ${
+              vehicle.status === "sold" ? "opacity-60 grayscale-[20%]" : ""
+            }`}
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center text-5xl">
+            🚘
+          </div>
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
+
+        <div className="absolute left-4 top-4">
+          <PublicStatusBadge status={vehicle.status} />
+        </div>
+
+        <span className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full border border-[#d6a62b]/25 bg-black/50 text-[#f2c857] backdrop-blur transition group-hover:bg-[#d6a62b] group-hover:text-black">
+          <FiArrowUpRight />
+        </span>
+      </div>
+
+      <div className="p-5">
+        <p className="text-[8px] font-black uppercase tracking-[0.2em] text-[#d6a62b]">
+          {vehicle.brand}
+        </p>
+
+        <h3 className="mt-2 line-clamp-1 text-xl font-black text-white">
+          {vehicle.name}
+        </h3>
+
+        <p className="mt-3 text-base font-black text-[#f2c857]">
+          {formatVehiclePrice(vehicle.price, vehicle.currency)}
+        </p>
+
+        <div className="mt-3 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+          {vehicle.year && <span>{vehicle.year}</span>}
+
+          {vehicle.transmission && (
+            <>
+              <span>•</span>
+              <span>{vehicle.transmission}</span>
+            </>
+          )}
+        </div>
+      </div>
+    </a>
+  );
+}
+
+function FeaturedWideCard({
+  vehicle,
+}: {
+  vehicle: PublicVehicle;
+}) {
+  return (
+    <a
+      href={`/vehicles/${vehicle.id}`}
+      className="group grid overflow-hidden rounded-[26px] border border-[#d6a62b]/15 bg-[#0c0b08] transition hover:-translate-y-1 hover:border-[#d6a62b]/30 sm:grid-cols-[1.15fr_0.85fr]"
+    >
+      <div className="relative min-h-[230px] overflow-hidden bg-black">
+        {vehicle.cover_image_url ? (
+          <img
+            src={vehicle.cover_image_url}
+            alt={vehicle.name}
+            loading="lazy"
+            decoding="async"
+            className={`absolute inset-0 h-full w-full object-cover transition duration-600 group-hover:scale-[1.03] ${
+              vehicle.status === "sold" ? "opacity-60 grayscale-[20%]" : ""
+            }`}
+          />
+        ) : (
+          <div className="flex h-full min-h-[230px] items-center justify-center text-5xl">
+            🚘
+          </div>
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
+
+        <div className="absolute left-4 top-4">
+          <PublicStatusBadge status={vehicle.status} />
+        </div>
+      </div>
+
+      <div className="flex flex-col justify-center p-5 sm:p-6">
+        <p className="text-[8px] font-black uppercase tracking-[0.2em] text-[#d6a62b]">
+          {vehicle.brand}
+        </p>
+
+        <h3 className="mt-2 text-xl font-black text-white sm:text-2xl">
+          {vehicle.name}
+        </h3>
+
+        <p className="mt-3 text-lg font-black text-[#f2c857]">
+          {formatVehiclePrice(vehicle.price, vehicle.currency)}
+        </p>
+
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-[10px] text-slate-500">
+          {vehicle.year && <span>{vehicle.year}</span>}
+
+          {vehicle.transmission && (
+            <>
+              <span>•</span>
+              <span>{vehicle.transmission}</span>
+            </>
+          )}
+
+          {vehicle.color && (
+            <>
+              <span>•</span>
+              <span>{vehicle.color}</span>
+            </>
+          )}
+        </div>
+
+        <div className="mt-5 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.12em] text-[#d6a62b]">
+          View Vehicle
+          <FiArrowRight className="transition group-hover:translate-x-1" />
+        </div>
+      </div>
+    </a>
   );
 }
 
@@ -656,6 +812,27 @@ function PublicStatusBadge({ status }: { status: PublicVehicleStatus }) {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 650);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <main className="overflow-x-hidden bg-[#030303] text-white">
@@ -664,6 +841,46 @@ export default function Home() {
       ====================================================== */}
 
       <header className="fixed left-0 top-0 z-50 w-full">
+        {/* TOP TRUST / LOCATION BAR */}
+        <div className="border-b border-[#d6a62b]/15 bg-[#090704]/98 text-white">
+          <div className="mx-auto flex min-h-[38px] max-w-[1440px] items-center justify-between gap-3 px-4 sm:px-5 lg:px-8 xl:px-12">
+            <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
+              <FiMapPin className="shrink-0 text-[13px] text-[#f0c458]" />
+
+              <div className="min-w-0 overflow-x-auto whitespace-nowrap text-[8px] font-semibold tracking-[0.02em] text-slate-300 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:text-[9px] lg:text-[10px]">
+                <span className="font-black text-[#e8c35f]">Lagos:</span>{" "}
+                Km 6, Ikeja Along Expressway, Lagos State
+                <span className="mx-3 text-[#6e5a2b]">•</span>
+                <span className="font-black text-[#e8c35f]">Onitsha:</span>{" "}
+                No. 2 Anam Street, Omagba Phase 2 Estate, Onitsha
+                <span className="mx-3 text-[#6e5a2b]">•</span>
+                <span className="font-black text-[#e8c35f]">Cotonou:</span>{" "}
+                Park Royale Mivvo, Cotonou, Benin Republic
+              </div>
+            </div>
+
+            <div className="flex shrink-0 items-center gap-2">
+              <a
+                href="tel:+2347032729753"
+                className="hidden items-center gap-1.5 text-[9px] font-black text-slate-300 transition hover:text-[#f2c857] md:flex"
+              >
+                <FiPhone />
+                +234 703 272 9753
+              </a>
+
+              <a
+                href="https://wa.me/2347032729753?text=Hello%20Blessed%20God%20Is%20Great%20Motor%20Autos%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 rounded-full bg-[#25D366] px-3 py-1.5 text-[8px] font-black text-white shadow-[0_6px_20px_rgba(37,211,102,0.2)] transition hover:brightness-110 sm:text-[9px]"
+              >
+                <FaWhatsapp className="text-[12px]" />
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
         <div className="border-b border-[#d6a62b]/15 bg-[#050403]/95 backdrop-blur-xl">
           <nav className="mx-auto flex h-[64px] max-w-[1440px] items-center justify-between px-4 sm:px-5 lg:h-[82px] lg:px-8 xl:px-12">
             {/* BRAND */}
@@ -782,43 +999,19 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#040403] pt-[64px] lg:pt-[82px]"
+        className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#040403] pt-[102px] lg:pt-[120px]"
       >
         {/* CAR BACKGROUND - KEPT VERY VISIBLE */}
 
-        <motion.div
-          initial={{
-            scale: 1.025,
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-            scale: [1.01, 1.035, 1.01],
-            x: [0, -5, 0],
-          }}
-          transition={{
-            opacity: {
-              duration: 1.1,
-            },
-            scale: {
-              duration: 14,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
-            x: {
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut",
-            },
-          }}
-          className="absolute inset-0"
-        >
+        <div className="absolute inset-0">
           <img
             src="/images/great-zuby-lexus-hero.png"
             alt="Premium Lexus SUV"
+            fetchPriority="high"
+            decoding="async"
             className="h-full w-full object-cover object-[69%_center] opacity-[0.96] brightness-[1.08] contrast-[1.04] saturate-[1.08] min-[430px]:object-[66%_center] sm:object-[64%_center] sm:opacity-[0.98] md:object-[62%_center] md:opacity-100 lg:object-center"
           />
-        </motion.div>
+        </div>
 
         {/* DARKNESS ONLY BEHIND THE TEXT.
             THE RIGHT SIDE OF THE CAR IS LEFT ALMOST UNTOUCHED. */}
@@ -831,79 +1024,13 @@ export default function Home() {
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[20%] bg-gradient-to-t from-black/30 to-transparent" />
 
-        {/* SOFT GOLD SHOWROOM LIGHT OVER THE CAR */}
+        {/* STATIC SHOWROOM LIGHTING - PERFORMANCE OPTIMIZED */}
 
-        <motion.div
-          animate={{
-            opacity: [0.04, 0.13, 0.04],
-            scale: [0.96, 1.08, 0.96],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="pointer-events-none absolute right-[-8%] top-[20%] h-[360px] w-[430px] rounded-full bg-[#ffd76a]/10 blur-[105px] sm:right-[-2%] sm:h-[430px] sm:w-[520px] md:right-[2%] md:h-[500px] md:w-[620px] lg:blur-[125px]"
-        />
+        <div className="pointer-events-none absolute right-[-4%] top-[22%] h-[360px] w-[430px] rounded-full bg-[#ffd76a]/7 blur-[85px] sm:h-[400px] sm:w-[500px] md:right-[2%] md:h-[450px] md:w-[560px]" />
 
-        {/* SHOWROOM CEILING WARMTH */}
+        <div className="pointer-events-none absolute right-[10%] top-[3%] h-[120px] w-[42%] rounded-full bg-[#ffb000]/6 blur-[55px]" />
 
-        <motion.div
-          animate={{
-            opacity: [0.03, 0.1, 0.03],
-            scaleX: [0.9, 1.08, 0.9],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="pointer-events-none absolute right-[10%] top-[3%] h-[150px] w-[45%] rounded-full bg-[#ffb000]/8 blur-[75px]"
-        />
-
-        {/* DESKTOP HEADLIGHT GLOWS */}
-
-        <motion.div
-          animate={{
-            opacity: [0.08, 0.5, 0.18, 0.7, 0.08],
-            scale: [0.9, 1.12, 1, 1.2, 0.9],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="pointer-events-none absolute right-[25%] top-[49%] z-[4] hidden h-[20px] w-[105px] rounded-full bg-[#fff5cf] blur-[16px] xl:block"
-        />
-
-        <motion.div
-          animate={{
-            opacity: [0.08, 0.55, 0.2, 0.75, 0.08],
-            scale: [0.9, 1.12, 1, 1.2, 0.9],
-          }}
-          transition={{
-            duration: 4,
-            delay: 0.15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="pointer-events-none absolute right-[8%] top-[49%] z-[4] hidden h-[20px] w-[105px] rounded-full bg-[#fff5cf] blur-[16px] xl:block"
-        />
-
-        {/* SUBTLE FLOOR REFLECTION */}
-
-        <motion.div
-          animate={{
-            opacity: [0.04, 0.12, 0.04],
-            scaleX: [0.92, 1.05, 0.92],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="pointer-events-none absolute bottom-[4%] right-[4%] hidden h-[38px] w-[52%] rounded-[100%] bg-[#e7b33f]/10 blur-[30px] md:block"
-        />
+        <div className="pointer-events-none absolute bottom-[4%] right-[4%] hidden h-[30px] w-[48%] rounded-[100%] bg-[#e7b33f]/8 blur-[24px] md:block" />
 
         {/* HERO CONTENT */}
 
@@ -1000,10 +1127,10 @@ export default function Home() {
               className="hero-mobile-actions mt-5 flex flex-col gap-2.5 min-[360px]:flex-row sm:mt-7 sm:gap-3 md:mt-9 md:gap-4"
             >
               <a
-                href="#vehicles"
+                href="/vehicles"
                 className="group flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#b98311] via-[#d6a62b] to-[#f0c85d] px-5 py-3 text-[12px] font-black text-[#080603] shadow-[0_12px_35px_rgba(214,166,43,0.22)] transition hover:-translate-y-1 sm:px-6 sm:py-3.5 sm:text-sm md:py-4"
               >
-                Explore Vehicles
+                Browse Inventory
 
                 <span className="flex h-6 w-6 items-center justify-center rounded-full bg-black text-[12px] text-[#ffd76a] transition group-hover:translate-x-1 sm:h-7 sm:w-7">
                   <FiArrowRight />
@@ -1127,18 +1254,7 @@ export default function Home() {
                     }}
                     className="group relative flex h-[145px] w-[145px] shrink-0 flex-col items-center justify-center overflow-hidden rounded-[20px] border border-[#d6a62b]/25 bg-[#0e0c08]/80 px-3 py-4 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:h-[165px] sm:w-[180px] sm:rounded-[24px] md:h-[185px] md:w-[225px] md:px-5 md:py-6"
                   >
-                    <motion.div
-                      animate={{
-                        opacity: [0.08, 0.3, 0.08],
-                        scale: [0.9, 1.15, 0.9],
-                      }}
-                      transition={{
-                        duration: 4 + index * 0.3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      className="pointer-events-none absolute top-[-45px] h-[110px] w-[140px] rounded-full bg-[#ffb000]/22 blur-[45px]"
-                    />
+                    <div className="pointer-events-none absolute top-[-45px] h-[100px] w-[130px] rounded-full bg-[#ffb000]/12 blur-[38px]" />
 
                     <div className="absolute left-1/2 top-0 h-[2px] w-[65%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#ffd05a] to-transparent" />
 
@@ -1150,38 +1266,17 @@ export default function Home() {
 
                     {/* NATURAL LOGO - NO GOLD FILTER */}
 
-                    <motion.div
-                      animate={{
-                        y: [0, -5, 0],
-                      }}
-                      transition={{
-                        duration: 3 + index * 0.3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: index * 0.12,
-                      }}
-                      className="relative z-10 mt-4 flex items-center justify-center"
-                    >
+                    <div className="relative z-10 mt-4 flex items-center justify-center">
                       <BrandLogo
                         name={brand.name}
                         short={brand.short}
                         logo={brand.logo}
                       />
-                    </motion.div>
+                    </div>
 
                     {/* GOLD FLOOR */}
 
-                    <motion.div
-                      animate={{
-                        opacity: [0.06, 0.18, 0.06],
-                        scaleX: [0.8, 1.1, 0.8],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                      }}
-                      className="absolute bottom-2 left-1/2 h-[6px] w-[65px] -translate-x-1/2 rounded-full bg-[#ffbd32]/18 blur-[7px]"
-                    />
+                    <div className="absolute bottom-2 left-1/2 h-[5px] w-[60px] -translate-x-1/2 rounded-full bg-[#ffbd32]/12 blur-[6px]" />
                   </motion.div>
                 ))}
               </div>
@@ -1191,7 +1286,97 @@ export default function Home() {
       </section>
 
       {/* =====================================================
-          LIVE VEHICLE INVENTORY
+          PREMIUM VEHICLE SHOWCASE
+      ====================================================== */}
+
+      <section
+        className="relative overflow-hidden border-y border-[#d6a62b]/10 bg-[#060504] py-20 md:py-28"
+        style={{
+          contentVisibility: "auto",
+          containIntrinsicSize: "900px",
+        }}
+      >
+        <BlackGoldAtmosphere />
+
+        <div className="relative z-10 mx-auto max-w-[1440px] px-5 md:px-8 xl:px-12">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="mb-4 flex items-center gap-3">
+                <span className="h-px w-8 bg-[#d6a62b]" />
+                <span className="text-[9px] font-black uppercase tracking-[0.25em] text-[#f0c458]">
+                  Premium Selection
+                </span>
+              </div>
+
+              <h2 className="max-w-[760px] text-4xl font-black tracking-[-0.045em] text-white sm:text-5xl md:text-6xl">
+                Luxury presence.
+                <br />
+                <span className="bg-gradient-to-r from-[#c99320] via-[#ffd76a] to-[#fff1b4] bg-clip-text text-transparent">
+                  Everyday confidence.
+                </span>
+              </h2>
+            </div>
+
+            <p className="max-w-[470px] text-sm leading-7 text-slate-400">
+              From executive sedans to premium SUVs, we source desirable
+              vehicles across leading global marques. Actual available stock is
+              shown in our live inventory below.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {premiumShowcase.map((car) => (
+              <article
+                key={`${car.brand}-${car.label}`}
+                className="group overflow-hidden rounded-[26px] border border-[#d6a62b]/18 bg-[#0b0906] shadow-[0_22px_60px_rgba(0,0,0,0.28)]"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-[radial-gradient(circle_at_50%_45%,#2b2923_0%,#11100d_48%,#050403_100%)]">
+                  <img
+                    src={car.image}
+                    alt={`${car.brand} ${car.label}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-contain p-2 brightness-[1.12] contrast-[1.03] saturate-[1.08] transition duration-500 group-hover:scale-[1.015] group-hover:brightness-[1.18] sm:p-3"
+                  />
+
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[24%] bg-gradient-to-t from-black/35 to-transparent" />
+                </div>
+
+                <div className="border-t border-[#d6a62b]/10 bg-gradient-to-b from-[#0d0b07] to-[#070604] p-5 md:p-6">
+                  <span className="inline-flex rounded-full border border-[#d6a62b]/25 bg-[#d6a62b]/7 px-3 py-1.5 text-[8px] font-black uppercase tracking-[0.2em] text-[#e7bd54]">
+                    {car.brand}
+                  </span>
+
+                  <h3 className="mt-3 text-2xl font-black tracking-[-0.035em] text-white">
+                    {car.label}
+                  </h3>
+
+                  <p className="mt-2 text-xs leading-6 text-slate-400">
+                    Available through sourcing and dealership inventory.
+                  </p>
+
+                  <a
+                    href={car.source}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-flex text-[9px] font-semibold text-[#75623b] transition hover:text-[#d6a62b]"
+                  >
+                    Photo: {car.credit} / Wikimedia Commons
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <p className="mt-6 text-[10px] leading-5 text-[#7c6a43]">
+            Representative model photography. Vehicle specifications,
+            colours and availability vary by stock and sourcing request.
+          </p>
+        </div>
+      </section>
+
+      {/* =====================================================
+          FEATURED VEHICLES
       ====================================================== */}
 
       <PublicInventory />
@@ -1388,8 +1573,10 @@ export default function Home() {
       >
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&q=90&w=2400"
+            src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&q=78&w=1800"
             alt="Illuminated city skyline"
+            loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover object-center"
           />
         </div>
@@ -1400,17 +1587,7 @@ export default function Home() {
 
         <div className="absolute inset-0 bg-gradient-to-t from-[#030302]/95 via-transparent to-[#050403]/60" />
 
-        <motion.div
-          animate={{
-            opacity: [0.12, 0.35, 0.12],
-            scale: [0.9, 1.12, 0.9],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-          }}
-          className="pointer-events-none absolute right-[3%] top-[15%] h-[420px] w-[450px] rounded-full bg-[#ffc54d]/18 blur-[120px]"
-        />
+        <div className="pointer-events-none absolute right-[3%] top-[15%] h-[340px] w-[380px] rounded-full bg-[#ffc54d]/10 blur-[90px]" />
 
         <div className="relative z-10 mx-auto grid max-w-[1440px] items-center gap-12 px-5 md:px-8 lg:grid-cols-2 xl:px-12">
           {/* IMAGE */}
@@ -1745,6 +1922,37 @@ export default function Home() {
           FOOTER
       ====================================================== */}
 
+      {/* FLOATING ACTIONS */}
+      <div className="fixed bottom-5 right-4 z-[70] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
+        <AnimatePresence>
+          {showScrollTop && (
+            <motion.button
+              type="button"
+              initial={{ opacity: 0, y: 8, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 8, scale: 0.92 }}
+              transition={{ duration: 0.18 }}
+              onClick={scrollToTop}
+              aria-label="Go back to the top"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#d6a62b]/30 bg-[#0b0906]/95 text-lg text-[#f2c857] shadow-[0_12px_35px_rgba(0,0,0,0.4)] backdrop-blur-md transition hover:-translate-y-1 hover:border-[#d6a62b]/60"
+            >
+              <FiChevronUp />
+            </motion.button>
+          )}
+        </AnimatePresence>
+
+        <a
+          href="https://wa.me/2347032729753?text=Hello%20Blessed%20God%20Is%20Great%20Motor%20Autos%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Chat with Blessed God Is Great Motor Autos on WhatsApp"
+          className="flex items-center gap-2 rounded-full border border-white/15 bg-[#25D366] px-4 py-3 text-xs font-black text-white shadow-[0_18px_50px_rgba(0,0,0,0.45)] transition hover:-translate-y-1 hover:brightness-110 sm:px-5"
+        >
+          <FaWhatsapp className="text-xl" />
+          <span className="hidden sm:inline">Chat on WhatsApp</span>
+        </a>
+      </div>
+
       <footer className="border-t border-[#d6a62b]/15 bg-[#020201] text-white">
         <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 xl:px-12">
           <div className="grid gap-12 border-b border-[#d6a62b]/15 pb-14 md:grid-cols-2 lg:grid-cols-4">
@@ -1782,7 +1990,7 @@ export default function Home() {
                 </a>
 
                 <a
-                  href="#vehicles"
+                  href="/vehicles"
                   className="transition hover:text-[#f0c458]"
                 >
                   Vehicles
