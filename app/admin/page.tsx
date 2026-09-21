@@ -24,6 +24,7 @@ import {
   FiPlus,
   FiRefreshCw,
   FiSearch,
+  FiSettings,
   FiStar,
   FiTrash2,
   FiX,
@@ -829,6 +830,22 @@ export default function AdminDashboard() {
                     : ""
                 }
               />
+            </button>
+
+            <button
+              type="button"
+              onClick={() =>
+                router.push(
+                  "/admin/settings",
+                )
+              }
+              className="flex h-10 items-center justify-center gap-2 rounded-full border border-[#d6a62b]/20 px-3 text-xs font-bold text-[#e7c764] transition hover:bg-[#d6a62b]/10 sm:px-4"
+            >
+              <FiSettings />
+
+              <span className="hidden sm:inline">
+                Settings
+              </span>
             </button>
 
             <button
