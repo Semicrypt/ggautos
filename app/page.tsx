@@ -28,6 +28,7 @@ import {
 } from "react-icons/pi";
 
 import {
+  FaFacebookF,
   FaInstagram,
   FaTiktok,
   FaWhatsapp,
@@ -137,55 +138,37 @@ const premiumShowcase = [
     brand: "LEXUS",
     label: "RX",
     image:
-      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lexus_RX_300_%28front%29_24_September_2024.jpg?width=1600",
-    credit: "メイド理世",
-    source:
-      "https://commons.wikimedia.org/wiki/File:Lexus_RX_300_(front)_24_September_2024.jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lexus_RX_300_%28front%29_24_September_2024.jpg?width=900",
   },
   {
     brand: "MERCEDES-BENZ",
     label: "G-Class",
     image:
-      "https://commons.wikimedia.org/wiki/Special:Redirect/file/2024_Mercedes-Benz_G-Class_G450d.jpg?width=1600",
-    credit: "Chanokchon",
-    source:
-      "https://commons.wikimedia.org/wiki/File:2024_Mercedes-Benz_G-Class_G450d.jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/2024_Mercedes-Benz_G-Class_G450d.jpg?width=900",
   },
   {
     brand: "RANGE ROVER",
     label: "Evoque",
     image:
-      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Range_Rover_Evoque_%28L551%29_IMG_9465_%28cropped%29.jpg?width=1600",
-    credit: "Alexander-93",
-    source:
-      "https://commons.wikimedia.org/wiki/File:Range_Rover_Evoque_(L551)_IMG_9465_(cropped).jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Range_Rover_Evoque_%28L551%29_IMG_9465_%28cropped%29.jpg?width=900",
   },
   {
     brand: "BMW",
     label: "7 Series",
     image:
-      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW_7-Series_%28G70%29_750e_1X7A2461.jpg?width=1600",
-    credit: "Alexander-93",
-    source:
-      "https://commons.wikimedia.org/wiki/File:BMW_7-Series_(G70)_750e_1X7A2461.jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/BMW_7-Series_%28G70%29_750e_1X7A2461.jpg?width=900",
   },
   {
     brand: "TOYOTA",
     label: "Camry",
     image:
-      "https://commons.wikimedia.org/wiki/Special:Redirect/file/2025_Toyota_Camry.jpg?width=1600",
-    credit: "Clock38030",
-    source:
-      "https://commons.wikimedia.org/wiki/File:2025_Toyota_Camry.jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/2025_Toyota_Camry.jpg?width=900",
   },
   {
     brand: "TOYOTA",
     label: "Corolla",
     image:
-      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Toyota_Corolla_2025%2B_For_Guangzhou_Auto_Show_2025.jpg?width=1600",
-    credit: "Nissangeniss",
-    source:
-      "https://commons.wikimedia.org/wiki/File:Toyota_Corolla_2025%2B_For_Guangzhou_Auto_Show_2025.jpg",
+      "https://commons.wikimedia.org/wiki/Special:Redirect/file/Toyota_Corolla_2025%2B_For_Guangzhou_Auto_Show_2025.jpg?width=900",
   },
 ];
 
@@ -257,6 +240,8 @@ function BrandLogo({
         <img
           src={logo}
           alt={`${name} logo`}
+          loading="lazy"
+          decoding="async"
           onError={() => setFailed(true)}
           className="max-h-full max-w-full object-contain"
         />
@@ -272,31 +257,52 @@ function BrandLogo({
 function BlackGoldAtmosphere() {
   return (
     <>
+      {/* Base luxury gradient */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 50% 52%, rgba(255,177,0,0.10), transparent 30%), radial-gradient(circle at 15% 20%, rgba(255,215,106,0.05), transparent 22%), radial-gradient(circle at 85% 22%, rgba(255,174,0,0.05), transparent 22%), linear-gradient(to bottom, #090805, #030303 58%, #080604)",
+            "radial-gradient(circle at 50% 52%, rgba(255,177,0,0.11), transparent 30%), radial-gradient(circle at 12% 18%, rgba(255,215,106,0.06), transparent 22%), radial-gradient(circle at 88% 20%, rgba(255,174,0,0.055), transparent 24%), linear-gradient(to bottom, #090805, #030303 58%, #080604)",
         }}
       />
 
-      <div className="pointer-events-none absolute left-[-5%] top-[7%] h-[300px] w-[300px] rounded-full bg-[#ffb000]/7 blur-[90px]" />
-      <div className="pointer-events-none absolute right-[-4%] top-[12%] h-[300px] w-[300px] rounded-full bg-[#ffd76a]/7 blur-[90px]" />
-      <div className="pointer-events-none absolute bottom-[2%] left-1/2 h-[30px] w-[62%] -translate-x-1/2 rounded-[100%] bg-[#ffb000]/7 blur-[24px]" />
+      {/* Soft gold glow zones */}
+      <div className="pointer-events-none absolute left-[-5%] top-[7%] hidden h-[280px] w-[280px] rounded-full bg-[#ffb000]/6 blur-[80px] sm:block md:h-[360px] md:w-[360px]" />
+      <div className="pointer-events-none absolute right-[-4%] top-[12%] hidden h-[260px] w-[260px] rounded-full bg-[#ffd76a]/6 blur-[80px] sm:block md:h-[340px] md:w-[340px]" />
+      <div className="pointer-events-none absolute bottom-[2%] left-1/2 h-[28px] w-[64%] -translate-x-1/2 rounded-[100%] bg-[#ffb000]/7 blur-[22px]" />
 
-      <div className="pointer-events-none absolute left-1/2 top-[52%] h-px w-[85%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#d6a62b]/20 to-transparent" />
+      {/* Architectural gold lines */}
+      <div className="pointer-events-none absolute left-[5%] top-[14%] h-[58%] w-px bg-gradient-to-b from-transparent via-[#d6a62b]/16 to-transparent" />
+      <div className="pointer-events-none absolute right-[7%] top-[28%] h-[46%] w-px bg-gradient-to-b from-transparent via-[#d6a62b]/12 to-transparent" />
+      <div className="pointer-events-none absolute left-1/2 top-[52%] h-px w-[88%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#d6a62b]/18 to-transparent" />
 
-      <span className="pointer-events-none absolute left-[8%] top-[30%] h-[3px] w-[3px] rounded-full bg-[#ffd15a]/70 shadow-[0_0_10px_3px_rgba(255,195,50,0.2)]" />
-      <span className="pointer-events-none absolute right-[20%] top-[28%] h-[3px] w-[3px] rounded-full bg-[#ffd76a]/60 shadow-[0_0_10px_3px_rgba(255,215,106,0.18)]" />
+      {/* Decorative showroom rings */}
+      <div className="pointer-events-none absolute -left-24 top-[28%] h-[210px] w-[210px] rounded-full border border-[#d6a62b]/10 md:h-[300px] md:w-[300px]" />
+      <div className="pointer-events-none absolute -right-28 bottom-[12%] h-[240px] w-[240px] rounded-full border border-[#f2c857]/8 md:h-[330px] md:w-[330px]" />
 
+      {/* Thin diagonal detailing */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.055]"
+        className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "radial-gradient(circle, rgba(255,193,55,0.5) 1px, transparent 1px)",
-          backgroundSize: "105px 105px",
+            "repeating-linear-gradient(120deg, rgba(214,166,43,0.22) 0px, rgba(214,166,43,0.22) 1px, transparent 1px, transparent 58px)",
         }}
       />
+
+      {/* Fine premium dot texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.045]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,193,55,0.6) 1px, transparent 1px)",
+          backgroundSize: "92px 92px",
+        }}
+      />
+
+      {/* Small light accents */}
+      <span className="pointer-events-none absolute left-[8%] top-[30%] h-[3px] w-[3px] rounded-full bg-[#ffd15a]/70 shadow-[0_0_10px_3px_rgba(255,195,50,0.18)]" />
+      <span className="pointer-events-none absolute right-[20%] top-[28%] h-[3px] w-[3px] rounded-full bg-[#ffd76a]/60 shadow-[0_0_10px_3px_rgba(255,215,106,0.16)]" />
+      <span className="pointer-events-none absolute bottom-[22%] left-[34%] h-[2px] w-[2px] rounded-full bg-[#f2c857]/60" />
     </>
   );
 }
@@ -357,7 +363,7 @@ function PublicInventory() {
   return (
     <section
       id="vehicles"
-      className="relative overflow-hidden bg-[#050403] py-20 text-white md:py-32"
+      className="relative overflow-hidden bg-[#050403] py-16 text-white sm:py-20 md:py-32"
     >
       <BlackGoldAtmosphere />
 
@@ -374,7 +380,7 @@ function PublicInventory() {
               </span>
             </div>
 
-            <h2 className="max-w-[760px] text-4xl font-black leading-[1.02] tracking-[-0.05em] text-white sm:text-5xl md:text-6xl">
+            <h2 className="max-w-[760px] text-[32px] font-black leading-[1.02] tracking-[-0.045em] text-white min-[390px]:text-4xl sm:text-5xl md:text-6xl">
               Featured cars.
               <br />
 
@@ -393,7 +399,7 @@ function PublicInventory() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="/vehicles"
-              className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-[#a8750e] via-[#d6a62b] to-[#f2ca61] px-6 py-3.5 text-[10px] font-black uppercase tracking-[0.12em] text-[#080603] shadow-[0_14px_40px_rgba(214,166,43,0.16)] transition hover:-translate-y-0.5"
+              className="group flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#a8750e] via-[#d6a62b] to-[#f2ca61] px-6 py-3.5 text-[10px] font-black uppercase tracking-[0.12em] text-[#080603] shadow-[0_14px_40px_rgba(214,166,43,0.16)] transition hover:-translate-y-0.5 sm:w-auto"
             >
               Explore All Vehicles
               <FiArrowRight className="transition group-hover:translate-x-1" />
@@ -494,7 +500,7 @@ function PublicInventory() {
               {vehicles[0] && (
                 <a
                   href={`/vehicles/${vehicles[0].id}`}
-                  className="group relative min-h-[430px] overflow-hidden rounded-[30px] border border-[#d6a62b]/20 bg-black shadow-[0_35px_90px_rgba(0,0,0,0.5)] sm:min-h-[500px] lg:col-span-8 lg:min-h-[610px]"
+                  className="group relative min-h-[360px] overflow-hidden rounded-[24px] border border-[#d6a62b]/20 bg-black shadow-[0_28px_70px_rgba(0,0,0,0.45)] min-[390px]:min-h-[400px] sm:min-h-[500px] sm:rounded-[30px] lg:col-span-8 lg:min-h-[610px]"
                   aria-label={`View ${vehicles[0].name}`}
                 >
                   {vehicles[0].cover_image_url ? (
@@ -836,6 +842,52 @@ export default function Home() {
 
   return (
     <main className="overflow-x-hidden bg-[#030303] text-white">
+      <style>{`
+        @keyframes addressTicker {
+          from { transform: translate3d(0, 0, 0); }
+          to { transform: translate3d(-50%, 0, 0); }
+        }
+
+        @keyframes brandTicker {
+          from { transform: translate3d(0, 0, 0); }
+          to { transform: translate3d(-50%, 0, 0); }
+        }
+
+        .address-ticker {
+          animation: addressTicker 30s linear infinite;
+          will-change: transform;
+        }
+
+        .brand-ticker {
+          animation: brandTicker 32s linear infinite;
+          will-change: transform;
+        }
+
+        @media (max-width: 640px) {
+          .address-ticker {
+            animation-duration: 30s;
+          }
+
+          .brand-ticker {
+            animation-duration: 30s;
+          }
+
+          /* Keep mobile scrolling light and predictable. */
+          .hero-mobile-copy,
+          .hero-mobile-actions,
+          .hero-mobile-stats {
+            max-width: 100%;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .address-ticker,
+          .brand-ticker {
+            animation: none;
+            transform: none;
+          }
+        }
+      `}</style>
       {/* =====================================================
           NAVBAR
       ====================================================== */}
@@ -843,19 +895,41 @@ export default function Home() {
       <header className="fixed left-0 top-0 z-50 w-full">
         {/* TOP TRUST / LOCATION BAR */}
         <div className="border-b border-[#d6a62b]/15 bg-[#090704]/98 text-white">
-          <div className="mx-auto flex min-h-[38px] max-w-[1440px] items-center justify-between gap-3 px-4 sm:px-5 lg:px-8 xl:px-12">
+          <div className="mx-auto flex min-h-[38px] max-w-[1440px] items-center justify-between gap-2 px-3 min-[380px]:px-4 sm:px-5 lg:px-8 xl:px-12">
             <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
               <FiMapPin className="shrink-0 text-[13px] text-[#f0c458]" />
 
-              <div className="min-w-0 overflow-x-auto whitespace-nowrap text-[8px] font-semibold tracking-[0.02em] text-slate-300 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:text-[9px] lg:text-[10px]">
-                <span className="font-black text-[#e8c35f]">Lagos:</span>{" "}
-                Km 6, Ikeja Along Expressway, Lagos State
-                <span className="mx-3 text-[#6e5a2b]">•</span>
-                <span className="font-black text-[#e8c35f]">Onitsha:</span>{" "}
-                No. 2 Anam Street, Omagba Phase 2 Estate, Onitsha
-                <span className="mx-3 text-[#6e5a2b]">•</span>
-                <span className="font-black text-[#e8c35f]">Cotonou:</span>{" "}
-                Park Royale Mivvo, Cotonou, Benin Republic
+              <div className="min-w-0 flex-1 overflow-hidden">
+                <div className="address-ticker flex w-max whitespace-nowrap text-[8px] font-semibold tracking-[0.02em] text-slate-300 sm:text-[9px] lg:text-[10px]">
+                  {[0, 1].map((copy) => (
+                    <div
+                      key={copy}
+                      className="flex shrink-0 items-center pr-8"
+                      aria-hidden={copy === 1}
+                    >
+                      <span className="font-black text-[#e8c35f]">Lagos:</span>
+                      <span className="ml-1">
+                        Km 6, Ikeja Along Expressway, Lagos State
+                      </span>
+
+                      <span className="mx-4 text-[#6e5a2b]">•</span>
+
+                      <span className="font-black text-[#e8c35f]">Onitsha:</span>
+                      <span className="ml-1">
+                        No. 2 Anam Street, Omagba Phase 2 Estate, Onitsha
+                      </span>
+
+                      <span className="mx-4 text-[#6e5a2b]">•</span>
+
+                      <span className="font-black text-[#e8c35f]">Cotonou:</span>
+                      <span className="ml-1">
+                        Park Royale Mivvo, Cotonou, Benin Republic
+                      </span>
+
+                      <span className="mx-4 text-[#6e5a2b]">•</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -881,8 +955,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="border-b border-[#d6a62b]/15 bg-[#050403]/95 backdrop-blur-xl">
-          <nav className="mx-auto flex h-[64px] max-w-[1440px] items-center justify-between px-4 sm:px-5 lg:h-[82px] lg:px-8 xl:px-12">
+        <div className="border-b border-[#d6a62b]/15 bg-[#050403]/95 md:backdrop-blur-xl">
+          <nav className="mx-auto flex h-[62px] max-w-[1440px] items-center justify-between px-3 min-[380px]:px-4 sm:px-5 lg:h-[82px] lg:px-8 xl:px-12">
             {/* BRAND */}
 
             <a href="#home" className="flex min-w-0 items-center gap-2.5 lg:gap-3">
@@ -901,11 +975,11 @@ export default function Home() {
               </motion.div>
 
               <div className="min-w-0">
-                <div className="whitespace-nowrap text-[10px] font-black leading-none tracking-[0.045em] text-white min-[370px]:text-[11px] sm:text-[13px] lg:text-[15px]">
+                <div className="whitespace-nowrap text-[9px] font-black leading-none tracking-[0.035em] text-white min-[360px]:text-[10px] min-[390px]:text-[11px] sm:text-[13px] lg:text-[15px] lg:tracking-[0.045em]">
                   BLESSED GOD IS GREAT
                 </div>
 
-                <div className="mt-1 whitespace-nowrap text-[5px] font-semibold tracking-[0.08em] text-[#e6bd57] min-[370px]:text-[6px] sm:text-[7px] lg:text-[8px] lg:tracking-[0.13em]">
+                <div className="mt-1 hidden whitespace-nowrap text-[5px] font-semibold tracking-[0.08em] text-[#e6bd57] min-[340px]:block min-[370px]:text-[6px] sm:text-[7px] lg:text-[8px] lg:tracking-[0.13em]">
                   MOTOR AUTOS INT&apos;L VENTURES
                 </div>
               </div>
@@ -945,7 +1019,7 @@ export default function Home() {
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d6a62b]/30 bg-[#d6a62b]/5 text-lg text-[#f0c85d] lg:hidden"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#d6a62b]/30 bg-[#d6a62b]/5 text-lg text-[#f0c85d] lg:hidden"
               aria-label="Toggle menu"
             >
               {menuOpen ? <FiX /> : <FiMenu />}
@@ -968,7 +1042,7 @@ export default function Home() {
                 opacity: 0,
                 y: -10,
               }}
-              className="border-b border-[#d6a62b]/20 bg-[#070604]/95 px-4 py-3 backdrop-blur-xl lg:hidden"
+              className="border-b border-[#d6a62b]/20 bg-[#070604]/95 px-4 py-3 md:backdrop-blur-xl lg:hidden"
             >
               <div className="flex flex-col gap-1">
                 {[
@@ -982,7 +1056,7 @@ export default function Home() {
                     key={label}
                     href={href}
                     onClick={() => setMenuOpen(false)}
-                    className="rounded-lg px-3 py-2.5 text-sm font-semibold text-slate-300 transition hover:bg-[#d6a62b]/10 hover:text-[#f0c85d]"
+                    className="rounded-xl px-4 py-3 text-sm font-semibold text-slate-300 transition hover:bg-[#d6a62b]/10 hover:text-[#f0c85d]"
                   >
                     {label}
                   </a>
@@ -999,13 +1073,13 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#040403] pt-[102px] lg:pt-[120px]"
+        className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#040403] pt-[100px] lg:pt-[120px]"
       >
         {/* CAR BACKGROUND - KEPT VERY VISIBLE */}
 
         <div className="absolute inset-0">
           <img
-            src="/images/great-zuby-lexus-hero.png"
+            src="/images/great-zuby-lexus-hero.webp"
             alt="Premium Lexus SUV"
             fetchPriority="high"
             decoding="async"
@@ -1034,7 +1108,7 @@ export default function Home() {
 
         {/* HERO CONTENT */}
 
-        <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 py-6 sm:px-6 sm:py-10 md:px-8 md:py-16 lg:py-24 xl:px-12">
+        <div className="relative z-10 mx-auto w-full max-w-[1440px] px-4 py-5 min-[390px]:py-6 sm:px-6 sm:py-10 md:px-8 md:py-16 lg:py-24 xl:px-12">
           <div className="max-w-[620px] lg:max-w-[650px]">
             {/* LABEL */}
 
@@ -1074,7 +1148,7 @@ export default function Home() {
                 duration: 0.8,
                 delay: 0.08,
               }}
-              className="drop-shadow-[0_4px_18px_rgba(0,0,0,0.75)] text-[38px] font-black leading-[0.9] tracking-[-0.055em] text-white min-[360px]:text-[42px] min-[400px]:text-[46px] sm:text-[58px] md:text-[72px] lg:text-[84px] xl:text-[91px]"
+              className="drop-shadow-[0_4px_18px_rgba(0,0,0,0.75)] text-[35px] font-black leading-[0.91] tracking-[-0.05em] text-white min-[350px]:text-[38px] min-[390px]:text-[42px] min-[420px]:text-[46px] sm:text-[58px] md:text-[72px] lg:text-[84px] xl:text-[91px]"
             >
               DRIVE
               <br />
@@ -1102,7 +1176,7 @@ export default function Home() {
                 duration: 0.7,
                 delay: 0.2,
               }}
-              className="hero-mobile-copy mt-4 max-w-[560px] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-[11px] leading-5 text-slate-200 min-[380px]:text-[12px] sm:mt-5 sm:text-[13px] sm:leading-6 md:mt-7 md:text-[17px] md:leading-7"
+              className="hero-mobile-copy mt-4 max-w-[330px] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-[11px] leading-5 text-slate-200 min-[390px]:max-w-[370px] min-[390px]:text-[12px] sm:mt-5 sm:max-w-[560px] sm:text-[13px] sm:leading-6 md:mt-7 md:text-[17px] md:leading-7"
             >
               BLESSED GOD IS GREAT MOTOR AUTOS INT'L VENTURES brings premium vehicle sales, sourcing and automotive
               logistics together in one dependable experience across Nigeria
@@ -1124,11 +1198,11 @@ export default function Home() {
                 duration: 0.7,
                 delay: 0.3,
               }}
-              className="hero-mobile-actions mt-5 flex flex-col gap-2.5 min-[360px]:flex-row sm:mt-7 sm:gap-3 md:mt-9 md:gap-4"
+              className="hero-mobile-actions mt-5 flex flex-col gap-2.5 sm:mt-7 sm:flex-row sm:gap-3 md:mt-9 md:gap-4"
             >
               <a
                 href="/vehicles"
-                className="group flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#b98311] via-[#d6a62b] to-[#f0c85d] px-5 py-3 text-[12px] font-black text-[#080603] shadow-[0_12px_35px_rgba(214,166,43,0.22)] transition hover:-translate-y-1 sm:px-6 sm:py-3.5 sm:text-sm md:py-4"
+                className="group flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#b98311] via-[#d6a62b] to-[#f0c85d] px-5 py-3.5 text-[12px] font-black text-[#080603] shadow-[0_12px_35px_rgba(214,166,43,0.22)] transition hover:-translate-y-1 sm:w-auto sm:px-6 sm:text-sm md:py-4"
               >
                 Browse Inventory
 
@@ -1139,7 +1213,7 @@ export default function Home() {
 
               <a
                 href="#services"
-                className="flex items-center justify-center rounded-full border border-[#d6a62b]/40 bg-black/20 px-5 py-3 text-[12px] font-bold text-[#f4dea0] shadow-[0_8px_30px_rgba(0,0,0,0.25)] backdrop-blur-md transition hover:bg-[#d6a62b]/10 sm:px-6 sm:py-3.5 sm:text-sm md:px-7 md:py-4"
+                className="flex w-full items-center justify-center rounded-full border border-[#d6a62b]/40 bg-black/20 px-5 py-3.5 text-[12px] font-bold text-[#f4dea0] shadow-[0_8px_30px_rgba(0,0,0,0.25)] transition hover:bg-[#d6a62b]/10 sm:w-auto sm:px-6 sm:text-sm md:px-7 md:py-4"
               >
                 Our Services
               </a>
@@ -1201,7 +1275,7 @@ export default function Home() {
           MOVING BRANDS
       ====================================================== */}
 
-      <section className="relative overflow-hidden border-y border-[#d6a62b]/20 bg-[#050403] py-10 sm:py-12 md:py-16">
+      <section className="relative overflow-hidden border-y border-[#d6a62b]/20 bg-[#050403] py-8 sm:py-12 md:py-16">
         <BlackGoldAtmosphere />
 
         <div className="relative z-10 mx-auto mb-6 max-w-[1440px] px-4 sm:mb-8 sm:px-6 md:px-8 xl:px-12">
@@ -1229,30 +1303,16 @@ export default function Home() {
         {/* CONTINUOUS TRACK */}
 
         <div className="relative z-10 overflow-hidden">
-          <motion.div
-            animate={{
-              x: ["0%", "-50%"],
-            }}
-            transition={{
-              duration: 32,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="flex w-max"
-          >
+          <div className="brand-ticker flex w-max">
             {[0, 1].map((copy) => (
               <div
                 key={copy}
                 className="flex shrink-0 gap-3 pr-3 sm:gap-4 sm:pr-4 md:gap-6 md:pr-6"
               >
                 {brandLogos.map((brand, index) => (
-                  <motion.div
+                  <div
                     key={`${copy}-${brand.name}`}
-                    whileHover={{
-                      y: -6,
-                      scale: 1.025,
-                    }}
-                    className="group relative flex h-[145px] w-[145px] shrink-0 flex-col items-center justify-center overflow-hidden rounded-[20px] border border-[#d6a62b]/25 bg-[#0e0c08]/80 px-3 py-4 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:h-[165px] sm:w-[180px] sm:rounded-[24px] md:h-[185px] md:w-[225px] md:px-5 md:py-6"
+                    className="group relative flex h-[132px] w-[132px] shrink-0 flex-col items-center justify-center overflow-hidden rounded-[18px] border border-[#d6a62b]/25 bg-[#0e0c08]/90 px-2.5 py-3.5 shadow-[0_16px_38px_rgba(0,0,0,0.4)] transition-transform duration-300 min-[390px]:h-[145px] min-[390px]:w-[145px] min-[390px]:rounded-[20px] hover:-translate-y-1 sm:h-[165px] sm:w-[180px] sm:rounded-[24px] md:h-[185px] md:w-[225px] md:px-5 md:py-6 md:backdrop-blur-xl"
                   >
                     <div className="pointer-events-none absolute top-[-45px] h-[100px] w-[130px] rounded-full bg-[#ffb000]/12 blur-[38px]" />
 
@@ -1277,11 +1337,11 @@ export default function Home() {
                     {/* GOLD FLOOR */}
 
                     <div className="absolute bottom-2 left-1/2 h-[5px] w-[60px] -translate-x-1/2 rounded-full bg-[#ffbd32]/12 blur-[6px]" />
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -1290,7 +1350,7 @@ export default function Home() {
       ====================================================== */}
 
       <section
-        className="relative overflow-hidden border-y border-[#d6a62b]/10 bg-[#060504] py-20 md:py-28"
+        className="relative overflow-hidden border-y border-[#d6a62b]/10 bg-[#060504] py-16 sm:py-20 md:py-28"
         style={{
           contentVisibility: "auto",
           containIntrinsicSize: "900px",
@@ -1298,7 +1358,7 @@ export default function Home() {
       >
         <BlackGoldAtmosphere />
 
-        <div className="relative z-10 mx-auto max-w-[1440px] px-5 md:px-8 xl:px-12">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-5 md:px-8 xl:px-12">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="mb-4 flex items-center gap-3">
@@ -1336,7 +1396,7 @@ export default function Home() {
                     alt={`${car.brand} ${car.label}`}
                     loading="lazy"
                     decoding="async"
-                    className="absolute inset-0 h-full w-full object-contain p-2 brightness-[1.12] contrast-[1.03] saturate-[1.08] transition duration-500 group-hover:scale-[1.015] group-hover:brightness-[1.18] sm:p-3"
+                    className="absolute inset-0 h-full w-full object-contain p-2 brightness-[1.12] contrast-[1.03] saturate-[1.08] transition duration-300 md:group-hover:scale-[1.015] md:group-hover:brightness-[1.18] sm:p-3"
                   />
 
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[24%] bg-gradient-to-t from-black/35 to-transparent" />
@@ -1354,15 +1414,6 @@ export default function Home() {
                   <p className="mt-2 text-xs leading-6 text-slate-400">
                     Available through sourcing and dealership inventory.
                   </p>
-
-                  <a
-                    href={car.source}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-3 inline-flex text-[9px] font-semibold text-[#75623b] transition hover:text-[#d6a62b]"
-                  >
-                    Photo: {car.credit} / Wikimedia Commons
-                  </a>
                 </div>
               </article>
             ))}
@@ -1385,12 +1436,14 @@ export default function Home() {
           LOGISTICS
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-[#050403] py-20 md:py-32">
+      <section className="relative overflow-hidden bg-[#050403] py-16 sm:py-20 md:py-32">
         <BlackGoldAtmosphere />
 
         <div className="absolute right-0 top-0 h-full w-full opacity-[0.16] lg:w-[58%]">
           <img
-            src="/images/great-zuby-lexus-hero.png"
+            src="/images/great-zuby-lexus-hero.webp"
+            loading="lazy"
+            decoding="async"
             alt=""
             className="h-full w-full object-cover"
           />
@@ -1420,7 +1473,7 @@ export default function Home() {
               </span>
             </div>
 
-            <h2 className="text-4xl font-black leading-[1.05] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl">
+            <h2 className="text-[32px] font-black leading-[1.05] tracking-[-0.04em] text-white min-[390px]:text-4xl sm:text-5xl md:text-6xl">
               From point A
               <br />
 
@@ -1486,11 +1539,11 @@ export default function Home() {
 
       <section
         id="services"
-        className="relative overflow-hidden bg-[#050403] py-20 md:py-32"
+        className="relative overflow-hidden bg-[#050403] py-16 sm:py-20 md:py-32"
       >
         <BlackGoldAtmosphere />
 
-        <div className="relative z-10 mx-auto max-w-[1440px] px-5 md:px-8 xl:px-12">
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 sm:px-5 md:px-8 xl:px-12">
           <div className="text-center">
             <div className="inline-flex items-center gap-3">
               <span className="h-px w-7 bg-[#e1b139]" />
@@ -1502,12 +1555,12 @@ export default function Home() {
               <span className="h-px w-7 bg-[#e1b139]" />
             </div>
 
-            <h2 className="mx-auto mt-5 max-w-[800px] text-4xl font-black tracking-[-0.045em] text-white sm:text-5xl md:text-6xl">
+            <h2 className="mx-auto mt-5 max-w-[800px] text-[32px] font-black tracking-[-0.04em] text-white min-[390px]:text-4xl sm:text-5xl md:text-6xl">
               More than a dealership.
             </h2>
           </div>
 
-          <div className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-10 grid gap-4 sm:mt-14 md:grid-cols-2 xl:grid-cols-4">
             {services.map((service, index) => {
               const Icon = service.icon;
 
@@ -1531,7 +1584,7 @@ export default function Home() {
                   whileHover={{
                     y: -7,
                   }}
-                  className="group relative min-h-[350px] overflow-hidden rounded-[26px] border border-[#d6a62b]/20 bg-[#0c0b08]/70 p-8 shadow-[0_25px_70px_rgba(0,0,0,0.45)] backdrop-blur-xl"
+                  className="group relative min-h-[275px] overflow-hidden rounded-[22px] border border-[#d6a62b]/20 bg-[#0c0b08]/80 p-5 shadow-[0_20px_55px_rgba(0,0,0,0.4)] sm:min-h-[300px] sm:p-6 md:min-h-[350px] md:rounded-[26px] md:p-8 md:backdrop-blur-xl"
                 >
                   <div className="absolute -right-20 -top-20 h-[180px] w-[180px] rounded-full bg-[#ffb000]/0 blur-[55px] transition duration-500 group-hover:bg-[#ffb000]/12" />
 
@@ -1547,7 +1600,7 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <h3 className="relative mt-16 text-2xl font-black text-white">
+                  <h3 className="relative mt-10 text-xl font-black text-white sm:mt-12 sm:text-2xl md:mt-16">
                     {service.title}
                   </h3>
 
@@ -1569,11 +1622,11 @@ export default function Home() {
 
       <section
         id="about"
-        className="relative overflow-hidden bg-[#050403] py-20 md:py-32"
+        className="relative overflow-hidden bg-[#050403] py-16 sm:py-20 md:py-32"
       >
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&q=78&w=1800"
+            src="/images/great-zuby-lexus-hero.webp"
             alt="Illuminated city skyline"
             loading="lazy"
             decoding="async"
@@ -1606,10 +1659,12 @@ export default function Home() {
             viewport={{
               once: true,
             }}
-            className="relative min-h-[400px] overflow-hidden rounded-[30px] border border-[#d6a62b]/25 shadow-[0_35px_100px_rgba(0,0,0,0.55)] sm:min-h-[520px]"
+            className="relative min-h-[320px] overflow-hidden rounded-[24px] border border-[#d6a62b]/25 shadow-[0_28px_80px_rgba(0,0,0,0.5)] min-[390px]:min-h-[350px] sm:min-h-[520px] sm:rounded-[30px]"
           >
             <img
-              src="/images/great-zuby-lexus-hero.png"
+              src="/images/great-zuby-lexus-hero.webp"
+            loading="lazy"
+            decoding="async"
               alt="Blessed God Is Great premium Lexus"
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -1617,7 +1672,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#050403]/95 via-transparent to-transparent" />
 
             <div className="absolute bottom-0 left-0 w-full p-5 sm:p-6 md:p-10">
-              <div className="max-w-[380px] rounded-2xl border border-[#d6a62b]/25 bg-black/55 p-5 backdrop-blur-xl">
+              <div className="max-w-[380px] rounded-2xl border border-[#d6a62b]/25 bg-black/55 p-5 md:backdrop-blur-xl">
                 <FiShield className="text-2xl text-[#f0c458]" />
 
                 <p className="mt-3 text-sm font-bold leading-6 text-white">
@@ -1651,7 +1706,7 @@ export default function Home() {
               </span>
             </div>
 
-            <h2 className="text-4xl font-black leading-[1.05] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl">
+            <h2 className="text-[32px] font-black leading-[1.05] tracking-[-0.04em] text-white min-[390px]:text-4xl sm:text-5xl md:text-6xl">
               Automotive service
               <br />
               built around
@@ -1686,7 +1741,7 @@ export default function Home() {
                   transition={{
                     delay: index * 0.08,
                   }}
-                  className="flex items-center gap-3 rounded-xl border border-[#d6a62b]/20 bg-black/45 px-4 py-4 backdrop-blur-xl"
+                  className="flex items-center gap-3 rounded-xl border border-[#d6a62b]/20 bg-black/45 px-4 py-4 md:backdrop-blur-xl"
                 >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#d6a62b]/15 text-sm text-[#f0c458]">
                     <FiCheck />
@@ -1706,7 +1761,7 @@ export default function Home() {
           ADVANTAGES
       ====================================================== */}
 
-      <section className="relative overflow-hidden bg-[#050403] py-20">
+      <section className="relative overflow-hidden bg-[#050403] py-16 sm:py-20">
         <BlackGoldAtmosphere />
 
         <div className="relative z-10 mx-auto grid max-w-[1440px] gap-4 px-5 md:grid-cols-3 md:px-8 xl:px-12">
@@ -1749,7 +1804,7 @@ export default function Home() {
                 whileHover={{
                   y: -6,
                 }}
-                className="group relative overflow-hidden rounded-[24px] border border-[#d6a62b]/20 bg-[#0d0b07]/75 p-7 shadow-[0_20px_60px_rgba(0,0,0,0.42)] backdrop-blur-xl"
+                className="group relative overflow-hidden rounded-[22px] border border-[#d6a62b]/20 bg-[#0d0b07]/80 p-5 shadow-[0_18px_48px_rgba(0,0,0,0.38)] sm:p-6 md:rounded-[24px] md:p-7 md:backdrop-blur-xl"
               >
                 <Icon className="relative text-2xl text-[#f0c458]" />
 
@@ -1772,13 +1827,13 @@ export default function Home() {
 
       <section
         id="contact"
-        className="relative overflow-hidden bg-[#050403] py-20 text-white md:py-28"
+        className="relative overflow-hidden bg-[#050403] py-16 text-white sm:py-20 md:py-28"
       >
         <BlackGoldAtmosphere />
 
         <div className="absolute left-1/2 top-0 h-[2px] w-[75%] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#ffd05a]/80 to-transparent" />
 
-        <div className="relative z-10 mx-auto max-w-[1200px] px-5 md:px-8">
+        <div className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-5 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1789,7 +1844,7 @@ export default function Home() {
               Blessed God Is Great Motor Autos Int&apos;l Ventures
             </span>
 
-            <h2 className="mt-7 text-4xl font-black leading-[1] tracking-[-0.05em] sm:text-5xl md:text-7xl">
+            <h2 className="mt-6 text-[32px] font-black leading-[1.02] tracking-[-0.045em] min-[390px]:text-4xl sm:mt-7 sm:text-5xl md:text-7xl">
               Your next vehicle
               <br />
               <span className="bg-gradient-to-r from-[#bd8714] via-[#ffd76a] to-[#fff0b0] bg-clip-text text-transparent">
@@ -1803,12 +1858,12 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:mt-12 md:grid-cols-2 lg:grid-cols-3">
             <a
               href="tel:+2347032729753"
-              className="group rounded-[22px] border border-[#d6a62b]/18 bg-[#0d0b07]/80 p-5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-[#d6a62b]/40"
+              className="group rounded-[22px] border border-[#d6a62b]/18 bg-[#0d0b07]/80 p-5 md:backdrop-blur-xl transition hover:-translate-y-1 hover:border-[#d6a62b]/40"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#d6a62b]/10 text-xl text-[#f2c857]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#22C55E]/25 bg-[#22C55E]/10 text-xl text-[#22C55E] shadow-[0_8px_24px_rgba(34,197,94,0.08)]">
                 <FiPhone />
               </div>
               <p className="mt-4 text-[9px] font-black uppercase tracking-[0.18em] text-[#8f7741]">
@@ -1821,9 +1876,9 @@ export default function Home() {
 
             <a
               href="mailto:godspowernwachukwu935@gmail.com"
-              className="group rounded-[22px] border border-[#d6a62b]/18 bg-[#0d0b07]/80 p-5 backdrop-blur-xl transition hover:-translate-y-1 hover:border-[#d6a62b]/40"
+              className="group rounded-[22px] border border-[#d6a62b]/18 bg-[#0d0b07]/80 p-5 md:backdrop-blur-xl transition hover:-translate-y-1 hover:border-[#d6a62b]/40"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#d6a62b]/10 text-xl text-[#f2c857]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#EA4335]/25 bg-[#EA4335]/10 text-xl text-[#EA4335] shadow-[0_8px_24px_rgba(234,67,53,0.08)]">
                 <FiMail />
               </div>
               <p className="mt-4 text-[9px] font-black uppercase tracking-[0.18em] text-[#8f7741]">
@@ -1834,8 +1889,8 @@ export default function Home() {
               </p>
             </a>
 
-            <div className="rounded-[22px] border border-[#d6a62b]/18 bg-[#0d0b07]/80 p-5 backdrop-blur-xl">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#d6a62b]/10 text-xl text-[#f2c857]">
+            <div className="rounded-[22px] border border-[#d6a62b]/18 bg-[#0d0b07]/80 p-5 md:backdrop-blur-xl">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#25D366]/25 bg-[#25D366]/10 text-xl text-[#25D366] shadow-[0_8px_24px_rgba(37,211,102,0.10)]">
                 <FaWhatsapp />
               </div>
               <p className="mt-4 text-[9px] font-black uppercase tracking-[0.18em] text-[#8f7741]">
@@ -1879,7 +1934,7 @@ export default function Home() {
             ].map(([branch, address]) => (
               <div
                 key={branch}
-                className="rounded-[22px] border border-[#d6a62b]/15 bg-black/30 p-5 backdrop-blur-xl"
+                className="rounded-[20px] border border-[#d6a62b]/15 bg-black/35 p-4 sm:p-5 md:rounded-[22px] md:backdrop-blur-xl"
               >
                 <div className="flex items-start gap-3">
                   <FiMapPin className="mt-1 shrink-0 text-[#f2c857]" />
@@ -1896,12 +1951,26 @@ export default function Home() {
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
+              href="https://www.facebook.com/godspower.nwachukwu.714"
+              target="_blank"
+              rel="noreferrer"
+              className="group flex w-full items-center justify-center gap-2.5 rounded-full border border-[#1877F2]/30 bg-[#1877F2]/8 px-4 py-2.5 text-xs font-black text-white transition hover:-translate-y-0.5 hover:border-[#1877F2]/55 hover:bg-[#1877F2]/14 sm:w-auto"
+            >
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1877F2] text-white shadow-[0_8px_22px_rgba(24,119,242,0.24)]">
+                <FaFacebookF className="text-sm" />
+              </span>
+              Facebook
+            </a>
+
+            <a
               href="https://www.instagram.com/godspowernwachukwumotors?stkn=MXJ5eTZoeDJuNzB0NQ=="
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 rounded-full border border-[#d6a62b]/25 bg-[#d6a62b]/5 px-5 py-3 text-xs font-black text-[#f0c458] transition hover:bg-[#d6a62b]/10"
+              className="group flex w-full items-center justify-center gap-2.5 rounded-full border border-[#E1306C]/30 bg-[#E1306C]/8 px-4 py-2.5 text-xs font-black text-white transition hover:-translate-y-0.5 hover:border-[#E1306C]/55 hover:bg-[#E1306C]/14 sm:w-auto"
             >
-              <FaInstagram className="text-base" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_110%,#FEDA75_0%,#FA7E1E_25%,#D62976_50%,#962FBF_75%,#4F5BD5_100%)] text-white shadow-[0_8px_22px_rgba(214,41,118,0.24)]">
+                <FaInstagram className="text-base" />
+              </span>
               Instagram
             </a>
 
@@ -1909,9 +1978,17 @@ export default function Home() {
               href="https://www.tiktok.com/@blessedgreatautos685?_r=1&_t=ZS-99v5JW59l8T"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 rounded-full border border-[#d6a62b]/25 bg-[#d6a62b]/5 px-5 py-3 text-xs font-black text-[#f0c458] transition hover:bg-[#d6a62b]/10"
+              className="group flex w-full items-center justify-center gap-2.5 rounded-full border border-white/15 bg-white/[0.04] px-4 py-2.5 text-xs font-black text-white transition hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08] sm:w-auto"
             >
-              <FaTiktok className="text-base" />
+              <span className="relative flex h-8 w-8 items-center justify-center rounded-full bg-black text-white shadow-[0_8px_22px_rgba(0,0,0,0.32)] ring-1 ring-white/10">
+                <span className="absolute left-[7px] text-[#25F4EE] opacity-80">
+                  <FaTiktok className="text-sm" />
+                </span>
+                <span className="absolute left-[9px] text-[#FE2C55] opacity-80">
+                  <FaTiktok className="text-sm" />
+                </span>
+                <FaTiktok className="relative z-10 text-sm text-white" />
+              </span>
               TikTok
             </a>
           </div>
@@ -1954,8 +2031,8 @@ export default function Home() {
       </div>
 
       <footer className="border-t border-[#d6a62b]/15 bg-[#020201] text-white">
-        <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 xl:px-12">
-          <div className="grid gap-12 border-b border-[#d6a62b]/15 pb-14 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto max-w-[1440px] px-4 py-10 sm:px-5 sm:py-12 md:px-8 md:py-14 xl:px-12">
+          <div className="grid gap-8 border-b border-[#d6a62b]/15 pb-10 sm:gap-10 sm:pb-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-12 lg:pb-14">
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#d6a62b]/35 bg-gradient-to-br from-[#171109] to-[#c7921e] text-[13px] font-black italic tracking-[-0.08em] text-[#fff0b0]">
